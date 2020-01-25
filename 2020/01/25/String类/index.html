@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>String类 | 风也曾来过</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Coastline's Blog" />
+  
+  <meta name="description" content="字符串是Java程序中经常处理的对象，如果字符串运用的不好，将影响到程序的运行效率。在Java中字符串作为String类的实例来处理。以对象的方式处理字符串，将使字符串更加灵活，方便。了解字符串上可用的操作，可以节省程序编写与维护时间。 创建字符串常用构造方法：  用字符数组创建对象12char a[]&#x3D;&amp;#123;&#39;g&#39;,&#39;o&#39;,&#39;o&#39;,&#39;d&#39;&amp;#125;;  String s &#x3D; new St">
+<meta property="og:type" content="article">
+<meta property="og:title" content="String类">
+<meta property="og:url" content="https://coastline-lh.github.io.git/2020/01/25/String%E7%B1%BB/index.html">
+<meta property="og:site_name" content="风也曾来过">
+<meta property="og:description" content="字符串是Java程序中经常处理的对象，如果字符串运用的不好，将影响到程序的运行效率。在Java中字符串作为String类的实例来处理。以对象的方式处理字符串，将使字符串更加灵活，方便。了解字符串上可用的操作，可以节省程序编写与维护时间。 创建字符串常用构造方法：  用字符数组创建对象12char a[]&#x3D;&amp;#123;&#39;g&#39;,&#39;o&#39;,&#39;o&#39;,&#39;d&#39;&amp;#125;;  String s &#x3D; new St">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://coastline-lh.github.io.git/2020/01/25/String%E7%B1%BB/1.png">
+<meta property="og:image" content="https://coastline-lh.github.io.git/2020/01/25/String%E7%B1%BB/2.png">
+<meta property="article:published_time" content="2020-01-25T12:38:52.000Z">
+<meta property="article:modified_time" content="2020-01-25T14:28:19.206Z">
+<meta property="article:author" content="Coastline-lh">
+<meta property="article:tag" content="编程语言">
+<meta property="article:tag" content="基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://coastline-lh.github.io.git/2020/01/25/String%E7%B1%BB/1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Coastline&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Coastline&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Hi! Friends
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Coastline" target="_blank" href="//Coastline-lh.github.io">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//https://github.com/Coastline-lh/Coastline-lh.github.io">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-String类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      String类
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/JAVA/">JAVA</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2020-01-25
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>字符串是Java程序中经常处理的对象，如果字符串运用的不好，将影响到程序的运行效率。在Java中字符串作为String类的实例来处理。以对象的方式处理字符串，将使字符串更加灵活，方便。了解字符串上可用的操作，可以节省程序编写与维护时间。</p>
+<h3 id="创建字符串"><a href="#创建字符串" class="headerlink" title="创建字符串"></a>创建字符串</h3><p>常用构造方法： </p>
+<h4 id="用字符数组创建对象"><a href="#用字符数组创建对象" class="headerlink" title="用字符数组创建对象"></a>用字符数组创建对象</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a[]=&#123;<span class="string">'g'</span>,<span class="string">'o'</span>,<span class="string">'o'</span>,<span class="string">'d'</span>&#125;;  </span><br><span class="line">String s = <span class="keyword">new</span> String(a);</span><br></pre></td></tr></table></figure>
+
+<p>等价于：<br>  <code>String s = new String(&quot;good&quot;)</code>   </p>
+<h4 id="提取字符数组一部分创建"><a href="#提取字符数组一部分创建" class="headerlink" title="提取字符数组一部分创建"></a>提取字符数组一部分创建</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a[]=&#123;<span class="string">'p'</span>,<span class="string">'e'</span>,<span class="string">'o'</span>,<span class="string">'p'</span>,<span class="string">'l'</span>,<span class="string">'e'</span>&#125;;  </span><br><span class="line">String s = <span class="keyword">new</span> String(a,<span class="number">2</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+
+<p>等价于：    </p>
+<p><code>String s = new String(&quot;ople&quot;)</code>   </p>
+<h4 id="分配新的String对象"><a href="#分配新的String对象" class="headerlink" title="分配新的String对象"></a>分配新的String对象</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a[]=&#123;<span class="string">'g'</span>,<span class="string">'o'</span>,<span class="string">'o'</span>,<span class="string">'d'</span>&#125;;  </span><br><span class="line">String s = <span class="keyword">new</span> String(a);</span><br></pre></td></tr></table></figure>
+
+<p>等价于：<br><code>String s = new String(&quot;good&quot;)</code>    </p>
+<p>与第一组类似，其a值是任意的。  </p>
+<h3 id="连接字符串"><a href="#连接字符串" class="headerlink" title="连接字符串"></a>连接字符串</h3><p>“+”可实现连接多个字符串的功能   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="keyword">new</span> String(<span class="string">"people"</span>); <span class="comment">// 声明String对象s1</span></span><br><span class="line">String s2 = <span class="keyword">new</span> String(<span class="string">"no"</span>); <span class="comment">// 声明String对象s2</span></span><br><span class="line">String s3 = <span class="keyword">new</span> String(<span class="string">"reall"</span>);	</span><br><span class="line">String s = s1 + <span class="string">" "</span> + s2 +<span class="string">" "</span>+ s3; <span class="comment">// 将对象s1和s2连接后赋值给s</span></span><br><span class="line">System.out.println(s); <span class="comment">// 将s输出</span></span><br></pre></td></tr></table></figure>
+
+<p>结果如下：<br><img src="/2020/01/25/String%E7%B1%BB/1.png" alt="result"></p>
+<h3 id="获取字符串长度"><a href="#获取字符串长度" class="headerlink" title="获取字符串长度"></a>获取字符串长度</h3><p>String 类中的length()方法可获取字符串对象的长度   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string s = <span class="string">"no one"</span>;</span><br><span class="line"><span class="keyword">int</span> size = str.length();</span><br></pre></td></tr></table></figure>
+<h3 id="字符串查找"><a href="#字符串查找" class="headerlink" title="字符串查找"></a>字符串查找</h3><p>String提供两种字符串查找的方法</p>
+<h5 id="indexOf"><a href="#indexOf" class="headerlink" title="indexOf()"></a>indexOf()</h5><p>返回搜索字符或字符串首次出现的位置<br>实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"happy new year"</span>;</span><br><span class="line"><span class="keyword">int</span> size = s.indexOf(<span class="string">"n"</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="lastIndexOf"><a href="#lastIndexOf" class="headerlink" title="lastIndexOf()"></a>lastIndexOf()</h5><p>返回最后一次出现的索引位置，没有检索到返回-1.<br>实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123; 		<span class="comment">//主方法</span></span><br><span class="line">		String str = <span class="string">"We are students"</span>; 			<span class="comment">//定义字符串str</span></span><br><span class="line">		<span class="comment">//将空格在str中的索引位置赋值给变量size</span></span><br><span class="line">		<span class="keyword">int</span> size = str.lastIndexOf(<span class="string">" "</span>);</span><br><span class="line">		<span class="comment">//将变量size输出</span></span><br><span class="line">		System.out.println(<span class="string">"空格在字符串str中的索引位置是："</span> + size);</span><br><span class="line">		<span class="comment">//将字符串str的长度输出</span></span><br><span class="line">		System.out.println(<span class="string">"字符串str的长度是："</span> + str.length());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<br><img src="/2020/01/25/String%E7%B1%BB/2.png" alt="result"></p>
+<h3 id="获取指定位置字符"><a href="#获取指定位置字符" class="headerlink" title="获取指定位置字符"></a>获取指定位置字符</h3><p><code>str.charAt(int index)</code><br>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"happy new year"</span>;</span><br><span class="line"><span class="keyword">char</span> test = s.charAt(<span class="number">4</span>);</span><br><span class="line">System.out.println(<span class="string">"s中索引为4的字母为："</span>+test);</span><br></pre></td></tr></table></figure>
+<p>输出为：y</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2020年01月25日 22:28</p>
+        <p>原始链接： <a class="post-url" href="/2020/01/25/String%E7%B1%BB/" title="String类">https://coastline-lh.github.io.git/2020/01/25/String%E7%B1%BB/</a></p>
+        <footer>
+            <a href="https://Coastline-lh.github.io.git">
+                <img src="/images/logo.png" alt="Coastline-lh">
+                Coastline-lh
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://coastline-lh.github.io.git/2020/01/25/String%E7%B1%BB/&title=《String类》 — 风也曾来过&pic=https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579085438811&di=355f994ba172f73dc3f9f8af190fb04c&imgtype=0&src=http%3A%2F%2Fa2.att.hudong.com%2F43%2F87%2F20300543669437145007874802107.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://coastline-lh.github.io.git/2020/01/25/String%E7%B1%BB/&title=《String类》 — 风也曾来过&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://coastline-lh.github.io.git/2020/01/25/String%E7%B1%BB/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《String类》 — 风也曾来过&url=https://coastline-lh.github.io.git/2020/01/25/String%E7%B1%BB/&via=https://Coastline-lh.github.io.git" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://coastline-lh.github.io.git/2020/01/25/String%E7%B1%BB/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://coastline-lh.github.io.git/2020/01/25/String%E7%B1%BB/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/编程语言/" class="color5">编程语言</a>
+      
+    <a href="/tags/基础/" class="color3">基础</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建字符串"><span class="post-toc-text">创建字符串</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#用字符数组创建对象"><span class="post-toc-text">用字符数组创建对象</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#提取字符数组一部分创建"><span class="post-toc-text">提取字符数组一部分创建</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#分配新的String对象"><span class="post-toc-text">分配新的String对象</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#连接字符串"><span class="post-toc-text">连接字符串</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#获取字符串长度"><span class="post-toc-text">获取字符串长度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#字符串查找"><span class="post-toc-text">字符串查找</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#indexOf"><span class="post-toc-text">indexOf()</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#lastIndexOf"><span class="post-toc-text">lastIndexOf()</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#获取指定位置字符"><span class="post-toc-text">获取指定位置字符</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/01/19/web%E5%AE%89%E5%85%A81/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">web安全观</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2020 Coastline-lh<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://Coastline-lh.github.io.git",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/JAVA/">JAVA</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Web/">Web</a><a class="category-link" href="/categories/project/">project</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15px;">基础</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%BA%90%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">源代码</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 10px;">环境</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">编程语言</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 10px;">语法</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15px;">基础</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%BA%90%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">源代码</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 10px;">环境</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">编程语言</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 10px;">语法</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
