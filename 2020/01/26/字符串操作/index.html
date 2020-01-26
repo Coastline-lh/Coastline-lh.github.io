@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>字符串操作 | 风也曾来过</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Coastline's Blog" />
+  
+  <meta name="description" content="获取子字符串String类的substring()方法可对字符串进行截取。str.substring(int beginindex)从指定位置截取到结尾。str.substring(int begin,int end)从索引为begin截取到end。   去除空格通过trim（）方法返回字符串副本，可忽略前导和尾部空格。str.trim()   字符串替换replace()方法实现将指定字或字符串">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符串操作">
+<meta property="og:url" content="https://coastline-lh.github.io.git/2020/01/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="风也曾来过">
+<meta property="og:description" content="获取子字符串String类的substring()方法可对字符串进行截取。str.substring(int beginindex)从指定位置截取到结尾。str.substring(int begin,int end)从索引为begin截取到end。   去除空格通过trim（）方法返回字符串副本，可忽略前导和尾部空格。str.trim()   字符串替换replace()方法实现将指定字或字符串">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://coastline-lh.github.io.git/2020/01/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/1.png">
+<meta property="article:published_time" content="2020-01-26T13:46:26.000Z">
+<meta property="article:modified_time" content="2020-01-26T14:16:33.510Z">
+<meta property="article:author" content="Coastline-lh">
+<meta property="article:tag" content="编程语言">
+<meta property="article:tag" content="基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://coastline-lh.github.io.git/2020/01/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Coastline&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Coastline&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Hi! Friends
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Coastline" target="_blank" href="//Coastline-lh.github.io">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//https://github.com/Coastline-lh/Coastline-lh.github.io">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-字符串操作" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      字符串操作
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/JAVA/">JAVA</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2020-01-26
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="获取子字符串"><a href="#获取子字符串" class="headerlink" title="获取子字符串"></a>获取子字符串</h3><p>String类的substring()方法可对字符串进行截取。<br><code>str.substring(int beginindex)</code><br>从指定位置截取到结尾。<br><code>str.substring(int begin,int end)</code><br>从索引为begin截取到end。  </p>
+<h3 id="去除空格"><a href="#去除空格" class="headerlink" title="去除空格"></a>去除空格</h3><p>通过trim（）方法返回字符串副本，可忽略前导和尾部空格。<br><code>str.trim()</code>  </p>
+<h3 id="字符串替换"><a href="#字符串替换" class="headerlink" title="字符串替换"></a>字符串替换</h3><p>replace()方法实现将指定字或字符串换成新的字符或字符串。<br><code>str.replace(char oldchar,char new char)</code></p>
+<h3 id="判断字符串的开始与结尾"><a href="#判断字符串的开始与结尾" class="headerlink" title="判断字符串的开始与结尾"></a>判断字符串的开始与结尾</h3><p>startsWith()方法与endsWith()方法用于判断字符串是否以指定的内容开始或结束。<br><code>str.startsWith(String s)</code><br><code>str.endsWith(String s)</code><br>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">	String num1 = <span class="string">"20200126"</span>;</span><br><span class="line">	String num2 = <span class="string">"20191212"</span>;</span><br><span class="line">	<span class="keyword">boolean</span> b = num1.startsWith(<span class="string">"20"</span>);</span><br><span class="line">	<span class="keyword">boolean</span> c = num1.endsWith(<span class="string">"20"</span>);，</span><br><span class="line">	<span class="keyword">boolean</span> d = num2.startsWith(<span class="string">"19"</span>);</span><br><span class="line">	<span class="keyword">boolean</span> e = num2.endsWith(<span class="string">"12"</span>);</span><br><span class="line">	System.out.println(b);</span><br><span class="line">	System.out.println(c);</span><br><span class="line">	System.out.println(d);</span><br><span class="line">	System.out.println(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="/2020/01/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/1.png" alt="result1">   </p>
+<h3 id="判断字符串是否相等"><a href="#判断字符串是否相等" class="headerlink" title="判断字符串是否相等"></a>判断字符串是否相等</h3><p>equals()方法,equalsIgnoreCase()方法<br>两个字符串具有相同的长度，返回bool值<br>equals区分大小写<br>equalsIgnoreCase忽略大小写</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2020年01月26日 22:16</p>
+        <p>原始链接： <a class="post-url" href="/2020/01/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/" title="字符串操作">https://coastline-lh.github.io.git/2020/01/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/</a></p>
+        <footer>
+            <a href="https://Coastline-lh.github.io.git">
+                <img src="/images/logo.png" alt="Coastline-lh">
+                Coastline-lh
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://coastline-lh.github.io.git/2020/01/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/&title=《字符串操作》 — 风也曾来过&pic=https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579085438811&di=355f994ba172f73dc3f9f8af190fb04c&imgtype=0&src=http%3A%2F%2Fa2.att.hudong.com%2F43%2F87%2F20300543669437145007874802107.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://coastline-lh.github.io.git/2020/01/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/&title=《字符串操作》 — 风也曾来过&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://coastline-lh.github.io.git/2020/01/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《字符串操作》 — 风也曾来过&url=https://coastline-lh.github.io.git/2020/01/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/&via=https://Coastline-lh.github.io.git" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://coastline-lh.github.io.git/2020/01/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://coastline-lh.github.io.git/2020/01/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/编程语言/" class="color5">编程语言</a>
+      
+    <a href="/tags/基础/" class="color3">基础</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#获取子字符串"><span class="post-toc-text">获取子字符串</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#去除空格"><span class="post-toc-text">去除空格</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#字符串替换"><span class="post-toc-text">字符串替换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#判断字符串的开始与结尾"><span class="post-toc-text">判断字符串的开始与结尾</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#判断字符串是否相等"><span class="post-toc-text">判断字符串是否相等</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/01/25/String%E7%B1%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">String类</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2020 Coastline-lh<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://Coastline-lh.github.io.git",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/JAVA/">JAVA</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Web/">Web</a><a class="category-link" href="/categories/project/">project</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15px;">基础</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%BA%90%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">源代码</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 10px;">环境</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">编程语言</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 10px;">语法</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15px;">基础</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%BA%90%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">源代码</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 10px;">环境</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">编程语言</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 10px;">语法</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
