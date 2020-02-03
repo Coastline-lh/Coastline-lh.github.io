@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>数字处理类 | 风也曾来过</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Coastline's Blog" />
+  
+  <meta name="description" content="为了应对各种数学问题以及对数字的处理，Java提供了许多数字处理类，包括DecimalFormat类（格式化数字），Math类（提供计算方法），Random类（处理随机数问题），BigInteger类与BigDecimal类（为所有大数据的处理提供相应的操作方法）。 数字格式化如果数据的绝对值大于0.001并且小于10000000，常规小数表示。如果数据的绝对值小于0.001并且大于1000000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字处理类">
+<meta property="og:url" content="https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/index.html">
+<meta property="og:site_name" content="风也曾来过">
+<meta property="og:description" content="为了应对各种数学问题以及对数字的处理，Java提供了许多数字处理类，包括DecimalFormat类（格式化数字），Math类（提供计算方法），Random类（处理随机数问题），BigInteger类与BigDecimal类（为所有大数据的处理提供相应的操作方法）。 数字格式化如果数据的绝对值大于0.001并且小于10000000，常规小数表示。如果数据的绝对值小于0.001并且大于1000000">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/result1.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/result2.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/result3.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/result4.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/result5.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/result6.png">
+<meta property="article:published_time" content="2020-02-01T04:47:27.000Z">
+<meta property="article:modified_time" content="2020-02-03T08:08:28.154Z">
+<meta property="article:author" content="Coastline-lh">
+<meta property="article:tag" content="编程语言">
+<meta property="article:tag" content="概念">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/result1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Coastline&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Coastline&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Hi! Friends
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Coastline" target="_blank" href="//Coastline-lh.github.io">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//https://github.com/Coastline-lh/Coastline-lh.github.io">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-数字处理类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      数字处理类
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/JAVA/">JAVA</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2020-02-01
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>为了应对各种数学问题以及对数字的处理，Java提供了许多数字处理类，包括DecimalFormat类（格式化数字），Math类（提供计算方法），Random类（处理随机数问题），BigInteger类与BigDecimal类（为所有大数据的处理提供相应的操作方法）。</p>
+<h3 id="数字格式化"><a href="#数字格式化" class="headerlink" title="数字格式化"></a>数字格式化</h3><p>如果数据的绝对值大于0.001并且小于10000000，常规小数表示。<br>如果数据的绝对值小于0.001并且大于10000000，科学计数法表示。<br>在DecimalFormat类中使用一些特殊的字符构成一个格式化模板，使数字按照一定的规则进行匹配<br>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DecimalFormatSimpleDemo</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 使用实例化对象时设置格式化模式</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SimgleFormat</span><span class="params">(String pattern, <span class="keyword">double</span> value)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 实例化DecimalFormat对象</span></span><br><span class="line">		DecimalFormat myFormat = <span class="keyword">new</span> DecimalFormat(pattern); </span><br><span class="line">		String output = myFormat.format(value); <span class="comment">// 将数字进行格式化</span></span><br><span class="line">		System.out.println(value + <span class="string">" "</span> + pattern + <span class="string">" "</span> + output);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 使用applyPattern()方法对数字进行格式化</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">UseApplyPatternMethodFormat</span><span class="params">(String pattern, <span class="keyword">double</span> value)</span> </span>&#123;</span><br><span class="line">		DecimalFormat myFormat=<span class="keyword">new</span> DecimalFormat();<span class="comment">//实例化DecimalFormat对象</span></span><br><span class="line">		myFormat.applyPattern(pattern); <span class="comment">// 调用applyPatten()方法设置格式化模板</span></span><br><span class="line">		System.out</span><br><span class="line">				.println(value + <span class="string">" "</span> + pattern + <span class="string">" "</span> + myFormat.format(value));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SimgleFormat(<span class="string">"###,###.###"</span>, <span class="number">123456.789</span>);<span class="comment">// 调用静态SimgleFormat()方法</span></span><br><span class="line">		SimgleFormat(<span class="string">"00000000.###kg"</span>, <span class="number">123456.789</span>); <span class="comment">// 在数字后加上单位</span></span><br><span class="line">		<span class="comment">// 按照格式模板格式化数字，不存在的位以0显示</span></span><br><span class="line">		SimgleFormat(<span class="string">"000000.000"</span>, <span class="number">123.78</span>);</span><br><span class="line">		<span class="comment">// 调用静态UseApplyPatternMethodFormat()方法</span></span><br><span class="line">		UseApplyPatternMethodFormat(<span class="string">"#.###%"</span>, <span class="number">0.789</span>); <span class="comment">// 将数字转换为百分数形式</span></span><br><span class="line">		<span class="comment">// 将小数点后格式化为两位</span></span><br><span class="line">		UseApplyPatternMethodFormat(<span class="string">"###.##"</span>, <span class="number">123456.789</span>);</span><br><span class="line">		<span class="comment">// 将数字转化为千分数形式</span></span><br><span class="line">		UseApplyPatternMethodFormat(<span class="string">"0.00\u2030"</span>, <span class="number">0.789</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<br><img src="/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/result1.png" alt="result"></p>
+<h3 id="数学运算"><a href="#数学运算" class="headerlink" title="数学运算"></a>数学运算</h3><h4 id="三角函数运算"><a href="#三角函数运算" class="headerlink" title="三角函数运算"></a>三角函数运算</h4><p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 取90度的正弦</span></span><br><span class="line">		System.out.println(<span class="string">"90度的正弦值："</span> + Math.sin(Math.PI / <span class="number">2</span>));</span><br><span class="line">		System.out.println(<span class="string">"0度的余弦值："</span> + Math.cos(<span class="number">0</span>)); <span class="comment">// 取0度的余弦</span></span><br><span class="line">		<span class="comment">// 取60度的正切</span></span><br><span class="line">		System.out.println(<span class="string">"60度的正切值："</span> + Math.tan(Math.PI / <span class="number">3</span>));</span><br><span class="line">		<span class="comment">// 取2的平方根与2商的反正弦</span></span><br><span class="line">		System.out.println(<span class="string">"2的平方根与2商的反弦值："</span></span><br><span class="line">				+ Math.asin(Math.sqrt(<span class="number">2</span>) / <span class="number">2</span>));</span><br><span class="line">		<span class="comment">// 取2的平方根与2商的反余弦</span></span><br><span class="line">		System.out.println(<span class="string">"2的平方根与2商的反余弦值："</span></span><br><span class="line">				+ Math.acos(Math.sqrt(<span class="number">2</span>) / <span class="number">2</span>));</span><br><span class="line">		System.out.println(<span class="string">"1的反正切值："</span> + Math.atan(<span class="number">1</span>)); <span class="comment">// 取1的反正切</span></span><br><span class="line">		<span class="comment">// 取120度的弧度值</span></span><br><span class="line">		System.out.println(<span class="string">"120度的弧度值："</span> + Math.toRadians(<span class="number">120.0</span>));</span><br><span class="line">		<span class="comment">// 取π/2的角度</span></span><br><span class="line">		System.out.println(<span class="string">"π/2的角度值："</span> + Math.toDegrees(Math.PI / <span class="number">2</span>));</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<br><img src="/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/result2.png" alt="result"></p>
+<h4 id="指数函数运算"><a href="#指数函数运算" class="headerlink" title="指数函数运算"></a>指数函数运算</h4><p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">的对数值：<span class="string">" + Math.log(2));</span></span><br><span class="line"><span class="string">		// 取以10为底2的对数</span></span><br><span class="line"><span class="string">		System.out.println("</span>以<span class="number">10</span>为底<span class="number">2</span>的对数值：<span class="string">" + Math.log10(2));</span></span><br><span class="line"><span class="string">		System.out.println("</span><span class="number">4</span>的平方根值：<span class="string">" + Math.sqrt(4)); // 取4的平方根</span></span><br><span class="line"><span class="string">		System.out.println("</span><span class="number">8</span>的立方根值：<span class="string">" + Math.cbrt(8)); // 取8的立方根</span></span><br><span class="line"><span class="string">		System.out.println("</span><span class="number">2</span>的<span class="number">2</span>次方值：<span class="string">" + Math.pow(2, 2)); // 取2的2次方</span></span><br><span class="line"><span class="string">	&#125;</span></span><br></pre></td></tr></table></figure>
+<p>结果：<br><img src="/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/result3.png" alt="result">   </p>
+<h4 id="取整函数"><a href="#取整函数" class="headerlink" title="取整函数"></a>取整函数</h4><p>示例： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 返回第一个大于等于参数的整数</span></span><br><span class="line">		System.out.println(<span class="string">"使用ceil()方法取整："</span> + Math.ceil(<span class="number">5.2</span>));</span><br><span class="line">		<span class="comment">// 返回第一个小于等于参数的整数</span></span><br><span class="line">		System.out.println(<span class="string">"使用floor()方法取整："</span> + Math.floor(<span class="number">2.5</span>));</span><br><span class="line">		<span class="comment">// 返回与参数最接近的整数</span></span><br><span class="line">		System.out.println(<span class="string">"使用rint()方法取整："</span> + Math.rint(<span class="number">2.7</span>));</span><br><span class="line">		<span class="comment">// 返回与参数最接近的整数</span></span><br><span class="line">		System.out.println(<span class="string">"使用rint()方法取整："</span> + Math.rint(<span class="number">2.5</span>));</span><br><span class="line">		<span class="comment">// 将参数加上0.5后返回最接近的整数</span></span><br><span class="line">		System.out.println(<span class="string">"使用round()方法取整："</span> + Math.round(<span class="number">3.4f</span>));</span><br><span class="line">		<span class="comment">// 将参数加上0.5后返回最接近的整数，并将结果强制转换为长整型</span></span><br><span class="line">		System.out.println(<span class="string">"使用round()方法取整："</span> + Math.round(<span class="number">2.5</span>));</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<br><img src="/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/result4.png" alt="result"> </p>
+<h3 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h3><h4 id="Math-random（）"><a href="#Math-random（）" class="headerlink" title="Math.random（）"></a>Math.random（）</h4><p>Math.random（）方法用于产生随机数字。<br>使用该方法还可产生字符，如下：<br><code>(char)(cha1+Math.random()*(cha2-cha1+1))</code><br>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">GetEvenNum</span><span class="params">(<span class="keyword">double</span> num1, <span class="keyword">double</span> num2)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 产生num1~num2之间的随机数</span></span><br><span class="line">		<span class="keyword">int</span> s = (<span class="keyword">int</span>) num1 + (<span class="keyword">int</span>) (Math.random() * (num2 - num1)); </span><br><span class="line">		<span class="keyword">if</span> (s % <span class="number">2</span> == <span class="number">0</span>) &#123; <span class="comment">// 判断随机数是否为偶数</span></span><br><span class="line">			<span class="keyword">return</span> s; <span class="comment">// 返回</span></span><br><span class="line">		&#125; <span class="keyword">else</span></span><br><span class="line">			<span class="comment">// 如果是奇数</span></span><br><span class="line">			<span class="keyword">return</span> s + <span class="number">1</span>; <span class="comment">// 将结果加1后返回</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">char</span> <span class="title">GetRandomChar</span><span class="params">(<span class="keyword">char</span> cha1, <span class="keyword">char</span> cha2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (<span class="keyword">char</span>) (cha1 + Math.random() * (cha2 - cha1 + <span class="number">1</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 调用产生随机数方法</span></span><br><span class="line">		System.out.println(<span class="string">"任意一个2~32之间的偶数："</span> + GetEvenNum(<span class="number">2</span>, <span class="number">32</span>));</span><br><span class="line">		<span class="comment">// 获取a~z之间的随机字符</span></span><br><span class="line">		System.out.println(<span class="string">"任意小写字符"</span> + GetRandomChar(<span class="string">'a'</span>, <span class="string">'z'</span>));</span><br><span class="line">				<span class="comment">// 获取A~Z之间的随机字符</span></span><br><span class="line">		System.out.println(<span class="string">"任意大写字符"</span> + GetRandomChar(<span class="string">'A'</span>, <span class="string">'Z'</span>));</span><br><span class="line">				<span class="comment">// 获取0~9之间的随机字符</span></span><br><span class="line">		System.out.println(<span class="string">"0到9任意数字字符"</span> + GetRandomChar(<span class="string">'0'</span>, <span class="string">'9'</span>));</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<br><img src="/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/result5.png" alt="result">    </p>
+<h4 id="Random类"><a href="#Random类" class="headerlink" title="Random类"></a>Random类</h4><p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	Random r = <span class="keyword">new</span> Random(); <span class="comment">// 实例化一个Random类</span></span><br><span class="line">	<span class="comment">// 随机产生一个整数</span></span><br><span class="line">	System.out.println(<span class="string">"随机产生一个整数:"</span> + r.nextInt());</span><br><span class="line">	<span class="comment">// 随机产生一个大于等于0小于10的整数</span></span><br><span class="line">	System.out.println(<span class="string">"随机产生一个大于等于0小于10的整数："</span> + r.nextInt(<span class="number">10</span>));</span><br><span class="line">	<span class="comment">// 随机产生一个布尔型的值</span></span><br><span class="line">	System.out.println(<span class="string">"随机产生一个布尔型的值："</span> + r.nextBoolean());</span><br><span class="line">	<span class="comment">// 随机产生一个双精度型的值</span></span><br><span class="line">	System.out.println(<span class="string">"随机产生一个双精度型的值："</span> + r.nextDouble());</span><br><span class="line">	<span class="comment">// 随机产生一个浮点型的值</span></span><br><span class="line">	System.out.println(<span class="string">"随机产生一个浮点型的值："</span> + r.nextFloat());</span><br><span class="line">	<span class="comment">// 随机产生一个概率密度为高斯分布的双精度值</span></span><br><span class="line">	System.out.println(<span class="string">"随机产生一个概率密度为高斯分布的双精度值："</span></span><br><span class="line">			+ r.nextGaussian());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<br><img src="/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/result6.png" alt="result">  </p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2020年02月03日 16:08</p>
+        <p>原始链接： <a class="post-url" href="/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/" title="数字处理类">https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/</a></p>
+        <footer>
+            <a href="https://Coastline-lh.github.io">
+                <img src="/images/logo.png" alt="Coastline-lh">
+                Coastline-lh
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/&title=《数字处理类》 — 风也曾来过&pic=https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579085438811&di=355f994ba172f73dc3f9f8af190fb04c&imgtype=0&src=http%3A%2F%2Fa2.att.hudong.com%2F43%2F87%2F20300543669437145007874802107.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/&title=《数字处理类》 — 风也曾来过&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数字处理类》 — 风也曾来过&url=https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/&via=https://Coastline-lh.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://coastline-lh.github.io/2020/02/01/%E6%95%B0%E5%AD%97%E5%A4%84%E7%90%86%E7%B1%BB/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/编程语言/" class="color5">编程语言</a>
+      
+    <a href="/tags/概念/" class="color3">概念</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数字格式化"><span class="post-toc-text">数字格式化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数学运算"><span class="post-toc-text">数学运算</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#三角函数运算"><span class="post-toc-text">三角函数运算</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#指数函数运算"><span class="post-toc-text">指数函数运算</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#取整函数"><span class="post-toc-text">取整函数</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#随机数"><span class="post-toc-text">随机数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Math-random（）"><span class="post-toc-text">Math.random（）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Random类"><span class="post-toc-text">Random类</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/01/29/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">类和对象</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2020 Coastline-lh<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://Coastline-lh.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/JAVA/">JAVA</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Web/">Web</a><a class="category-link" href="/categories/project/">project</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 16.67px;">基础</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%A6%82%E5%BF%B5/" style="font-size: 10px;">概念</a> <a href="/tags/%E6%BA%90%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">源代码</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 10px;">环境</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">编程语言</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 13.33px;">语法</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 16.67px;">基础</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%A6%82%E5%BF%B5/" style="font-size: 10px;">概念</a> <a href="/tags/%E6%BA%90%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">源代码</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 10px;">环境</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">编程语言</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 13.33px;">语法</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
