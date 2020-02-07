@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>类的高级特性 | 风也曾来过</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Coastline's Blog" />
+  
+  <meta name="description" content="类除了具有普通的特性之外，还具有一些高级特性。比如:包，内部类等。包在整个管理过程中有着重要的作用，可以有效地管理繁杂的类文件，解决类重名问题。由于在类中可以定义多个内部类，实现接口的方式也不止一个，因此只要将内部类中的方法设置为类最小范围的修饰符，即可将内部类的实现细节有效隐藏。 Java类包Java类包是Java用来管理类文件的一种方式，不同的类包中可以有相同的类名存在，所属不同的类包，解决了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类的高级特性">
+<meta property="og:url" content="https://coastline-lh.github.io/2020/02/06/%E7%B1%BB%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="风也曾来过">
+<meta property="og:description" content="类除了具有普通的特性之外，还具有一些高级特性。比如:包，内部类等。包在整个管理过程中有着重要的作用，可以有效地管理繁杂的类文件，解决类重名问题。由于在类中可以定义多个内部类，实现接口的方式也不止一个，因此只要将内部类中的方法设置为类最小范围的修饰符，即可将内部类的实现细节有效隐藏。 Java类包Java类包是Java用来管理类文件的一种方式，不同的类包中可以有相同的类名存在，所属不同的类包，解决了">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-06T06:26:24.000Z">
+<meta property="article:modified_time" content="2020-02-07T07:59:23.359Z">
+<meta property="article:author" content="Coastline-lh">
+<meta property="article:tag" content="编程语言">
+<meta property="article:tag" content="语法">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Coastline&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Coastline&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Hi! Friends
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Coastline" target="_blank" href="//Coastline-lh.github.io">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//https://github.com/Coastline-lh/Coastline-lh.github.io">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-类的高级特性" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      类的高级特性
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/JAVA/">JAVA</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2020-02-06
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p>类除了具有普通的特性之外，还具有一些高级特性。比如:包，内部类等。包在整个管理过程中有着重要的作用，可以有效地管理繁杂的类文件，解决类重名问题。由于在类中可以定义多个内部类，实现接口的方式也不止一个，因此只要将内部类中的方法设置为类最小范围的修饰符，即可将内部类的实现细节有效隐藏。</p>
+<h3 id="Java类包"><a href="#Java类包" class="headerlink" title="Java类包"></a>Java类包</h3><p>Java类包是Java用来管理类文件的一种方式，不同的类包中可以有相同的类名存在，所属不同的类包，解决了类重名的问题。<br>在具体的使用过程中，可根据完整地路径判断所使用地是哪个类文件。<br>例如：<br><code>java.util.Data data = new java.util.Data();</code><br><code>java.sql.Data data2 = new java.sql.Data(1233);</code><br>两句语句分别定义了属于util包Data类和sql包Data类的两个对象。<br>在类文件中通过package关键字说明该文件所在的包。</p>
+<h4 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h4><p>在开发过程中，需要使用其他包的文件时，需要使用import关键字将相应的包导入到当前项目中。<br><code>import com.test.*</code>该包中的所有类都可以使用<br><code>import coom.test.Math</code>只有Math类可以使用   </p>
+<h3 id="final变量"><a href="#final变量" class="headerlink" title="final变量"></a>final变量</h3><p>使用final声明的变量不能再改变，即为一个常量。<br>一个既是static又是final的字段只占据一段不能改变的存储空间。<br>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.System.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalData</span> </span>&#123;</span><br><span class="line">	<span class="keyword">static</span> Random rand = <span class="keyword">new</span> Random();</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> VALUE_1 = <span class="number">9</span>; <span class="comment">// 声明一个final常量</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> VALUE_2 = <span class="number">10</span>; <span class="comment">// 声明一个final、static常量</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> Test test = <span class="keyword">new</span> Test(); <span class="comment">// 声明一个final引用</span></span><br><span class="line">	<span class="keyword">private</span> Test test2 = <span class="keyword">new</span> Test(); <span class="comment">// 声明一个不是final的引用</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span>[] a = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span> &#125;; <span class="comment">// 声明一个定义为final的数组</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> i4 = rand.nextInt(<span class="number">20</span>);</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> i5 = rand.nextInt(<span class="number">20</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> i4 + <span class="string">" "</span> + i5 + <span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		FinalData data = <span class="keyword">new</span> FinalData();</span><br><span class="line">		<span class="comment">// data.test=new Test();</span></span><br><span class="line">		<span class="comment">//可以对指定为final的引用中的成员变量赋值</span></span><br><span class="line">		<span class="comment">//但不能将定义为final的引用指向其他引用</span></span><br><span class="line">		<span class="comment">// data.value2++;</span></span><br><span class="line">		<span class="comment">//不能改变定义为final的常量值</span></span><br><span class="line">		data.test2 = <span class="keyword">new</span> Test(); <span class="comment">// 可以将没有定义为final的引用指向其他引用</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.a.length; i++) &#123;</span><br><span class="line">			<span class="comment">// a[i]=9;</span></span><br><span class="line">			<span class="comment">// //不能对定义为final的数组赋值</span></span><br><span class="line">		&#125;</span><br><span class="line">		out.println(data);</span><br><span class="line">		out.println(<span class="string">"data2"</span>);</span><br><span class="line">		out.println(<span class="keyword">new</span> FinalData());</span><br><span class="line">		<span class="comment">// out.println(data);</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义为final的对象只能指向唯一的对象，不可以指向其他对象。</p>
+<h3 id="final方法"><a href="#final方法" class="headerlink" title="final方法"></a>final方法</h3><p>使用final定义的方法不能进行重写。<br>将方法定义为final可以防止子类修改该类的定义与实现方式，并且定义为final的方法执行效率要高于非final。</p>
+<h3 id="final类"><a href="#final类" class="headerlink" title="final类"></a>final类</h3><p>定义为final的类不能被继承。<br>方法：<br><code>final 类名{}</code><br>fianl类中的所有方法都被隐式的设置为final形式。</p>
+<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><p>如在类中再定义一个类，那么在类中定义的那个类成为内部类。   </p>
+<h4 id="成员内部类"><a href="#成员内部类" class="headerlink" title="成员内部类"></a>成员内部类</h4><p>语法：   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">oterclass</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">innerclass</span></span>&#123;    <span class="comment">//内部类</span></span><br><span class="line">		<span class="comment">//操作</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>内部类中可以随意使用外部类的成员方法以及成员变量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OuterClass</span> </span>&#123;</span><br><span class="line">	innerClass in = <span class="keyword">new</span> innerClass(); <span class="comment">// 在外部类实例化内部类对象引用</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ouf</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		in.inf(); <span class="comment">// 在外部类方法中调用内部类方法</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">innerClass</span> </span>&#123;</span><br><span class="line">		innerClass() &#123; <span class="comment">// 内部类构造方法</span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inf</span><span class="params">()</span> </span>&#123; <span class="comment">// 内部类成员方法</span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> y = <span class="number">0</span>; <span class="comment">// 定义内部类成员变量</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> innerClass <span class="title">doit</span><span class="params">()</span> </span>&#123; <span class="comment">// 外部类方法，返回值为内部类引用</span></span><br><span class="line">		<span class="comment">// y=4; //外部类不可以直接访问内部类成员变量</span></span><br><span class="line">		in.y = <span class="number">4</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> innerClass(); <span class="comment">// 返回内部类引用</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">		OuterClass out = <span class="keyword">new</span> OuterClass();</span><br><span class="line">		<span class="comment">// 内部类的对象实例化操作必须在外部类或外部类中的非静态方法中实现</span></span><br><span class="line">		OuterClass.innerClass in = out.doit();</span><br><span class="line">		OuterClass.innerClass in2 = out.<span class="keyword">new</span> innerClass();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由例子可知，内部类的成员只有在内部类的范围内可知，不能被外部类使用。在例子中在外部类中对内部类成员y引用时，不能直接赋值，需通过内部类对象使用y。</p>
+<h4 id="内部类向上转型为接口"><a href="#内部类向上转型为接口" class="headerlink" title="内部类向上转型为接口"></a>内部类向上转型为接口</h4><p>将一个用pirvate修饰的内部类向上转型为其父类对象，或为一个接口，在程序中就可以完全隐藏内部类地实现过程。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">OutInterface</span> </span>&#123; <span class="comment">// 定义一个接口</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterfaceInner</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">		OuterClass2 out = <span class="keyword">new</span> OuterClass2(); <span class="comment">// 实例化一个OuterClass2对象</span></span><br><span class="line">		<span class="comment">// 调用doit()方法，返回一个OutInterface接口</span></span><br><span class="line">		OutInterface outinter = out.doit();</span><br><span class="line">		outinter.f(); <span class="comment">// 调用f()方法</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OuterClass2</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 定义一个内部类实现OutInterface接口</span></span><br><span class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> <span class="keyword">implements</span> <span class="title">OutInterface</span> </span>&#123;</span><br><span class="line">		InnerClass(String s) &#123; <span class="comment">// 内部类构造方法</span></span><br><span class="line">			System.out.println(s);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123; <span class="comment">// 实现接口中的f()方法</span></span><br><span class="line">			System.out.println(<span class="string">"访问内部类中的f()方法"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> OutInterface <span class="title">doit</span><span class="params">()</span> </span>&#123; <span class="comment">// 定义一个方法，返回值类型为OutInterface接口</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> InnerClass(<span class="string">"访问内部类构造方法"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本实例中内部类innerclass实现了接口，并且修改了doit（）方法，返回了一个OutInterface接口。由于内部类只能通过外部类对象访问，该方法返回了一个外部类接口，这个接口可以作为外部使用地接口。可以调用f（）方法，f（）本身的实现过程很好的隐藏，这是内部类的基本用途。</p>
+<h4 id="局部内部类"><a href="#局部内部类" class="headerlink" title="局部内部类"></a>局部内部类</h4><p>内部类可以在类的局部位置定义（类的方法或任意的作用域中）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">OutInterface2</span> </span>&#123; <span class="comment">// 定义一个接口</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OuterClass3</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> OutInterface2 <span class="title">doit</span><span class="params">(<span class="keyword">final</span> String x)</span> </span>&#123; <span class="comment">// doit()方法参数为final类型</span></span><br><span class="line">		<span class="comment">// 在doit()方法中定义一个内部类</span></span><br><span class="line">		<span class="class"><span class="keyword">class</span> <span class="title">InnerClass2</span> <span class="keyword">implements</span> <span class="title">OutInterface2</span> </span>&#123;</span><br><span class="line">			InnerClass2(String s) &#123;</span><br><span class="line">				s = x;</span><br><span class="line">				System.out.println(s);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> InnerClass2(<span class="string">"doit"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h4><p>在return语句中编写返回值作为一个匿名内部类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outerclass</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Outerface <span class="title">doit</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Outerface()&#123;   <span class="comment">//声明匿名内部类</span></span><br><span class="line">			<span class="keyword">private</span> <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getD</span><span class="params">()</span></span>&#123;</span><br><span class="line">				<span class="keyword">return</span> i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在呢本例中，doit（）方法内部返回一个Outerface的引用，在return语句中插入一个定义内部类的代码，这个类没有名称，所以为匿名类。匿名类的作用就是创建一个实现于Outerface接口的匿名类的对象。</p>
+<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><p>在创建内部类时使用static关键字修饰，在静态内部类中可以声明static成员，非静态则不可。静态内部类不可使用外部类的非静态成员。</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2020年02月07日 15:59</p>
+        <p>原始链接： <a class="post-url" href="/2020/02/06/%E7%B1%BB%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="类的高级特性">https://coastline-lh.github.io/2020/02/06/%E7%B1%BB%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/</a></p>
+        <footer>
+            <a href="https://Coastline-lh.github.io">
+                <img src="/images/logo.png" alt="Coastline-lh">
+                Coastline-lh
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://coastline-lh.github.io/2020/02/06/%E7%B1%BB%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/&title=《类的高级特性》 — 风也曾来过&pic=https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579085438811&di=355f994ba172f73dc3f9f8af190fb04c&imgtype=0&src=http%3A%2F%2Fa2.att.hudong.com%2F43%2F87%2F20300543669437145007874802107.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://coastline-lh.github.io/2020/02/06/%E7%B1%BB%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/&title=《类的高级特性》 — 风也曾来过&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://coastline-lh.github.io/2020/02/06/%E7%B1%BB%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《类的高级特性》 — 风也曾来过&url=https://coastline-lh.github.io/2020/02/06/%E7%B1%BB%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/&via=https://Coastline-lh.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://coastline-lh.github.io/2020/02/06/%E7%B1%BB%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://coastline-lh.github.io/2020/02/06/%E7%B1%BB%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/编程语言/" class="color5">编程语言</a>
+      
+    <a href="/tags/语法/" class="color3">语法</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Java类包"><span class="post-toc-text">Java类包</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#导入包"><span class="post-toc-text">导入包</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#final变量"><span class="post-toc-text">final变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#final方法"><span class="post-toc-text">final方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#final类"><span class="post-toc-text">final类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#内部类"><span class="post-toc-text">内部类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#成员内部类"><span class="post-toc-text">成员内部类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#内部类向上转型为接口"><span class="post-toc-text">内部类向上转型为接口</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#局部内部类"><span class="post-toc-text">局部内部类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#匿名内部类"><span class="post-toc-text">匿名内部类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#静态内部类"><span class="post-toc-text">静态内部类</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/02/05/%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">继承与多态</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2020 Coastline-lh<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://Coastline-lh.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/JAVA/">JAVA</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Web/">Web</a><a class="category-link" href="/categories/project/">project</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15px;">基础</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%A6%82%E5%BF%B5/" style="font-size: 10px;">概念</a> <a href="/tags/%E6%BA%90%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">源代码</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 10px;">环境</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">编程语言</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">语法</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 15px;">基础</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%A6%82%E5%BF%B5/" style="font-size: 10px;">概念</a> <a href="/tags/%E6%BA%90%E4%BB%A3%E7%A0%81/" style="font-size: 10px;">源代码</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 10px;">环境</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">编程语言</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">语法</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
