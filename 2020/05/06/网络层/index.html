@@ -3,24 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>web安全观 | 风也曾来过</title>
+  <title>网络层 | 风也曾来过</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Acarehusk's Blog" />
   
-  <meta name="description" content="web（World Wide Web）即全球广域网，也称为万维网，它是一种基于超文本和HTTP的、全球性的、动态交互的、跨平台的分布式图形信息系统。是建立在Internet上的一种网络服务，为浏览者在Internet上查找和浏览信息提供了图形化的、易于访问的直观界面，其中的文档及超级链接将Internet上的信息节点组织成一个互为关联的网状结构。 中国黑客简史吴翰清先生将中国黑客的发展分为了：启蒙">
+  <meta name="description" content="网路层将源端的数据包发送到目的端，主要内容为：IP协议（IP地址、IP分组、IPV6)、路由选择协议(距离矢量路由选择协议、链路状态路由协议）、其他（ARP、ICMP、CIDR、NAT)。 数据报网络在数据报网络中，数据包在网络中不断地被转发到达目的机，各个路由器根据各自的路由表对数据包进行处理，在下一个节点发生拥塞时，前一个节点发现可更改自己的路由表使其避开拥塞。 虚电路网络该网络在通信过程种，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="web安全观">
-<meta property="og:url" content="https://coastline-lh.github.io/2020/01/19/web%E5%AE%89%E5%85%A81/index.html">
+<meta property="og:title" content="网络层">
+<meta property="og:url" content="https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/index.html">
 <meta property="og:site_name" content="风也曾来过">
-<meta property="og:description" content="web（World Wide Web）即全球广域网，也称为万维网，它是一种基于超文本和HTTP的、全球性的、动态交互的、跨平台的分布式图形信息系统。是建立在Internet上的一种网络服务，为浏览者在Internet上查找和浏览信息提供了图形化的、易于访问的直观界面，其中的文档及超级链接将Internet上的信息节点组织成一个互为关联的网状结构。 中国黑客简史吴翰清先生将中国黑客的发展分为了：启蒙">
+<meta property="og:description" content="网路层将源端的数据包发送到目的端，主要内容为：IP协议（IP地址、IP分组、IPV6)、路由选择协议(距离矢量路由选择协议、链路状态路由协议）、其他（ARP、ICMP、CIDR、NAT)。 数据报网络在数据报网络中，数据包在网络中不断地被转发到达目的机，各个路由器根据各自的路由表对数据包进行处理，在下一个节点发生拥塞时，前一个节点发现可更改自己的路由表使其避开拥塞。 虚电路网络该网络在通信过程种，">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-01-19T14:23:15.246Z">
-<meta property="article:modified_time" content="2020-01-19T15:06:10.688Z">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/1.png">
+<meta property="article:published_time" content="2020-05-06T08:21:27.000Z">
+<meta property="article:modified_time" content="2020-05-07T13:51:34.372Z">
 <meta property="article:author" content="Acarehusk-lh">
-<meta property="article:tag" content="基础">
-<meta property="article:tag" content="安全">
+<meta property="article:tag" content="note">
+<meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -100,14 +102,14 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-web安全1" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-网络层" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      web安全观
+      网络层
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -115,12 +117,12 @@
               <li>
                   <i class="fa fa-book"></i>
                   
-                      <a href="/categories/Web/">Web</a>
+                      <a href="/categories/Review/">Review</a>
                   
               </li>
           
         <li>
-          <i class="fa fa-calendar"></i>  2020-01-19
+          <i class="fa fa-calendar"></i>  2020-05-06
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -136,20 +138,21 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <p>web（World Wide Web）即全球广域网，也称为万维网，它是一种基于超文本和HTTP的、全球性的、动态交互的、跨平台的分布式图形信息系统。是建立在Internet上的一种网络服务，为浏览者在Internet上查找和浏览信息提供了图形化的、易于访问的直观界面，其中的文档及超级链接将Internet上的信息节点组织成一个互为关联的网状结构。</p>
-<h3 id="中国黑客简史"><a href="#中国黑客简史" class="headerlink" title="中国黑客简史"></a>中国黑客简史</h3><p>吴翰清先生将中国黑客的发展分为了：启蒙时代，黄金时代，黑暗时代。<br>启蒙时代：20世纪90年代，中国互联网的起步阶段。国内热爱技术的青年受到国外黑客文化的影响，开始研究安全漏洞，完全是处于个人爱好，好奇心与求知欲是最大的动力。</p>
-<p>黄金时代：以中美黑客大战为标志，黑客这一群体受到了社会的关注，无数青年走上了这条道路。特点是年轻，有活力，同时以盈利为目的的攻击，漏洞挖掘开始出现，黑色产业链开始逐步成型。</p>
-<p>黑暗时代：随着时代的发展，黑客的功利性越来越强，开始造成危害。</p>
-<h3 id="web安全的兴起"><a href="#web安全的兴起" class="headerlink" title="web安全的兴起"></a>web安全的兴起</h3><p>web1.0时代：关注于服务器端动态脚本的安全问题<br><a href="https://baike.baidu.com/item/sql%E6%B3%A8%E5%85%A5/150289?fr=aladdin" target="_blank" rel="noopener">sql注入漏洞</a>是web安全的一个里程碑<br><a href="https://baike.baidu.com/item/XSS%E6%94%BB%E5%87%BB/954065?fr=aladdin" target="_blank" rel="noopener">XSS（跨站脚本攻击)</a>是另一个里程碑<br>（至今依然是主要的web攻击方式）<br>web2.0的兴起，web的攻击思路也从服务端转向了客户端，转向了浏览器和用户，随着web技术不断的发展，安全技术也紧跟着互联网发展的脚步，不断变化。  </p>
-<h3 id="安全三要素"><a href="#安全三要素" class="headerlink" title="安全三要素"></a>安全三要素</h3><h5 id="机密性"><a href="#机密性" class="headerlink" title="机密性"></a>机密性</h5><p>保证数据不会泄露，加密则是常用的手段。</p>
-<h5 id="完整性"><a href="#完整性" class="headerlink" title="完整性"></a>完整性</h5><p>要求数据内容是完整的，没有被篡改的，常用技术：数字摘要</p>
-<h5 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h5><p>随需而得</p>
-<h3 id="安全方案的特点"><a href="#安全方案的特点" class="headerlink" title="安全方案的特点"></a>安全方案的特点</h3><p>能够有效解决问题<br>用户体验好<br>高性能 低耦合<br>易于拓展与升级</p>
-
+            <p>网路层将源端的数据包发送到目的端，主要内容为：IP协议（IP地址、IP分组、IPV6)、路由选择协议(距离矢量路由选择协议、链路状态路由协议）、其他（ARP、ICMP、CIDR、NAT)。</p>
+<h3 id="数据报网络"><a href="#数据报网络" class="headerlink" title="数据报网络"></a>数据报网络</h3><p>在数据报网络中，数据包在网络中不断地被转发到达目的机，各个路由器根据各自的路由表对数据包进行处理，在下一个节点发生拥塞时，前一个节点发现可更改自己的路由表使其避开拥塞。</p>
+<h3 id="虚电路网络"><a href="#虚电路网络" class="headerlink" title="虚电路网络"></a>虚电路网络</h3><p>该网络在通信过程种，通信双方首先协商一条路径，数据包只携带该路径的标号，路由器根据标号进行转发。如果有相同的路径，则通过标号标签交换区别。在这样的情况下，某个路由器拥塞或故障，将对整个路径造成影响。</p>
+<h3 id="Internet-Protocol-IP"><a href="#Internet-Protocol-IP" class="headerlink" title="Internet Protocol(IP)"></a>Internet Protocol(IP)</h3><p>IP将整个互联网连接。被路由协议：IP地址+IP数据报。</p>
+<h4 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h4><p>32位而二进制代码表示，便于记忆使用点分十进制，分成4组。IP具有层次结构。<br>A类地址： 0xxxxxxx.xxxxxxxx.xxxxxxxx<br>前一个字节标识网络地址部分，后三字节标识主机地址部分。<br>第一字节范围为：0-127。<br>A类地址的网络只有128个<br>每个网络最大容纳2的24次方-2台主机。<br>B类地址：10xxxxxx.xxxxxxxx.xxxxxxxx<br>前两字节标识网络地址，后两字节标识主机地址。<br>第一字节取值范围：128-191。<br>B类地址网络总数为：2的14次方个。<br>每个网络最大容纳2的16次方-2台主机。<br>C类地址： 110xxxxx.xxxxxxxx.xxxxxxxx<br>前3字节网络地址，后一字节主机地址。<br>第一字节范围为：192-223。<br>C类地址网络总数：2的21次方个。<br>没个网络可容纳254台主机。  </p>
+<h4 id="子网"><a href="#子网" class="headerlink" title="子网"></a>子网</h4><p>将一个网络分割成小的子网，通过子网掩码和边界路由器选择相应的包的转发方向。</p>
+<h5 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h5><p>使用点分十进制表示，使用连续的1加连续的0。<br>连续的1表示网络为，0表示主机位。或使用/网络位数+子网位数表示。<br>例如：<br>11111111 11111111 11100000<br>点分表示为：255.255.2555.224<br>/网络位数+子网位数表示：/27<br>路由器将目的IP地址和子网掩码进行按位与操作，结果为目的网络地址。<br>子网掩码的存在，使得路由器不在记录所有的主机地址，减少了路由表的长度。</p>
+<h5 id="子网的构建"><a href="#子网的构建" class="headerlink" title="子网的构建"></a>子网的构建</h5><p>构建子网通过从网络地址的主机位借位进行。<br>在一个C类地址中，主机位有8位，可通过高两位构建子网即借两位，可构建的子网号位00,01,10,11，每个子网可以有64的IP(出去网络地址000000和广播地址111111）。<br>在借位构造子网时，最大的借位数位主机位-2，即要至少留下两位作为主机位。</p>
+<h4 id="IP寻址、分组"><a href="#IP寻址、分组" class="headerlink" title="IP寻址、分组"></a>IP寻址、分组</h4><p>根据IP找到相应的目的网络。<br>主要设备为路由器，一个路由器称为一跳（hop）。数据包通过各级路由器的不断转发到达目的网络时通过MAC寻址确定主机。</p>
+<p>IP分组：头部+数据<br><img src="/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/1.png" alt="1"></p>
+<h4 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h4>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2020年01月19日 23:06</p>
-        <p>原始链接： <a class="post-url" href="/2020/01/19/web%E5%AE%89%E5%85%A81/" title="web安全观">https://coastline-lh.github.io/2020/01/19/web%E5%AE%89%E5%85%A81/</a></p>
+        <p>最后更新： 2020年05月07日 21:51</p>
+        <p>原始链接： <a class="post-url" href="/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/" title="网络层">https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/</a></p>
         <footer>
             <a href="https://Coastline-lh.github.io">
                 <img src="/images/logo.png" alt="Acarehusk-lh">
@@ -175,7 +178,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://coastline-lh.github.io/2020/01/19/web%E5%AE%89%E5%85%A81/&title=《web安全观》 — 风也曾来过&pic=https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579454009852&di=fe864c5a326d6a001d9c44e2d33f422e&imgtype=0&src=http%3A%2F%2Fwww.cssxt.com%2Fuploadfile%2F2017%2F0914%2F20170914093048653.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/&title=《网络层》 — 风也曾来过&pic=https://i04piccdn.sogoucdn.com/aa3192f62d79367c" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -185,22 +188,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://coastline-lh.github.io/2020/01/19/web%E5%AE%89%E5%85%A81/&title=《web安全观》 — 风也曾来过&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/&title=《网络层》 — 风也曾来过&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://coastline-lh.github.io/2020/01/19/web%E5%AE%89%E5%85%A81/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《web安全观》 — 风也曾来过&url=https://coastline-lh.github.io/2020/01/19/web%E5%AE%89%E5%85%A81/&via=https://Coastline-lh.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《网络层》 — 风也曾来过&url=https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/&via=https://Coastline-lh.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://coastline-lh.github.io/2020/01/19/web%E5%AE%89%E5%85%A81/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -210,7 +213,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://coastline-lh.github.io/2020/01/19/web%E5%AE%89%E5%85%A81/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -222,9 +225,9 @@
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/基础/" class="color3">基础</a>
+    <a href="/tags/note/" class="color5">note</a>
       
-    <a href="/tags/安全/" class="color3">安全</a>
+    <a href="/tags/计算机网络/" class="color1">计算机网络</a>
       
   </li>
 
@@ -237,26 +240,16 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#中国黑客简史"><span class="post-toc-text">中国黑客简史</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#web安全的兴起"><span class="post-toc-text">web安全的兴起</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安全三要素"><span class="post-toc-text">安全三要素</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#机密性"><span class="post-toc-text">机密性</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#完整性"><span class="post-toc-text">完整性</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#可用性"><span class="post-toc-text">可用性</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安全方案的特点"><span class="post-toc-text">安全方案的特点</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据报网络"><span class="post-toc-text">数据报网络</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#虚电路网络"><span class="post-toc-text">虚电路网络</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Internet-Protocol-IP"><span class="post-toc-text">Internet Protocol(IP)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IP地址"><span class="post-toc-text">IP地址</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#子网"><span class="post-toc-text">子网</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#子网掩码"><span class="post-toc-text">子网掩码</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#子网的构建"><span class="post-toc-text">子网的构建</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IP寻址、分组"><span class="post-toc-text">IP寻址、分组</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IPv6"><span class="post-toc-text">IPv6</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
   
-    <a href="/2020/01/25/String%E7%B1%BB/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          String类
-        
-      </span>
-    </a>
   
-  
-    <a href="/2020/01/15/Python%E6%AD%A3%E5%88%99/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">Python正则表达式</span>
+    <a href="/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">关系代数</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
