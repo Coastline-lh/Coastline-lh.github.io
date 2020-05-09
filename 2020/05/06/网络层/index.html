@@ -16,8 +16,13 @@
 <meta property="og:description" content="网路层将源端的数据包发送到目的端，主要内容为：IP协议（IP地址、IP分组、IPV6)、路由选择协议(距离矢量路由选择协议、链路状态路由协议）、其他（ARP、ICMP、CIDR、NAT)。 数据报网络在数据报网络中，数据包在网络中不断地被转发到达目的机，各个路由器根据各自的路由表对数据包进行处理，在下一个节点发生拥塞时，前一个节点发现可更改自己的路由表使其避开拥塞。 虚电路网络该网络在通信过程种，">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/1.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/2.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/3.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/4.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/6.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/5.png">
 <meta property="article:published_time" content="2020-05-06T08:21:27.000Z">
-<meta property="article:modified_time" content="2020-05-07T13:51:34.372Z">
+<meta property="article:modified_time" content="2020-05-09T08:40:40.987Z">
 <meta property="article:author" content="Acarehusk-lh">
 <meta property="article:tag" content="note">
 <meta property="article:tag" content="计算机网络">
@@ -148,10 +153,19 @@
 <h5 id="子网的构建"><a href="#子网的构建" class="headerlink" title="子网的构建"></a>子网的构建</h5><p>构建子网通过从网络地址的主机位借位进行。<br>在一个C类地址中，主机位有8位，可通过高两位构建子网即借两位，可构建的子网号位00,01,10,11，每个子网可以有64的IP(出去网络地址000000和广播地址111111）。<br>在借位构造子网时，最大的借位数位主机位-2，即要至少留下两位作为主机位。</p>
 <h4 id="IP寻址、分组"><a href="#IP寻址、分组" class="headerlink" title="IP寻址、分组"></a>IP寻址、分组</h4><p>根据IP找到相应的目的网络。<br>主要设备为路由器，一个路由器称为一跳（hop）。数据包通过各级路由器的不断转发到达目的网络时通过MAC寻址确定主机。</p>
 <p>IP分组：头部+数据<br><img src="/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/1.png" alt="1"></p>
-<h4 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h4>
+<h4 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h4><p>128位二进制表示。<br>使用冒分16进制表示：<br>xxxxxxxx xxxxxxxx:xxxxxxxx xxxxxxxx:<br>xxxxxxxx xxxxxxxx:xxxxxxxx xxxxxxxx:<br>xxxxxxxx xxxxxxxx:xxxxxxxx xxxxxxxx:<br>xxxxxxxx xxxxxxxx:xxxxxxxx xxxxxxxx<br>每个16位组用对应的4位16进制表示。<br>分为单播地址、组播地址、任播地址<br>特殊地址：<br><img src="/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/2.png" alt="2">   </p>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><h4 id="距离矢量路由DV"><a href="#距离矢量路由DV" class="headerlink" title="距离矢量路由DV"></a>距离矢量路由DV</h4><p>适用于小型网络<br>工作原理：<br><img src="/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/3.png" alt="3"><br>每个路由器维护两个向量，Di和Si(该路由器到其他路由器的距离以及下一跳)。<br>在相邻的路由器之间交换矢量。<br>每个路由器根据收到的矢量信息，更新自己的路由表。<br>优缺点:<br>简单、交换信息量大、路由传播慢，可能会导致路径信息不一致、收敛慢，度量技术到无穷、路径环。</p>
+<h4 id="路由选择信息协议RIP"><a href="#路由选择信息协议RIP" class="headerlink" title="路由选择信息协议RIP"></a>路由选择信息协议RIP</h4><p>典型的DV路由选择协议<br>采用跳数作为量度<br>当量度超过15跳，认为目的网络不可达<br>默认每30秒交换一次矢量<br>寻找最优网络的过程叫做收敛（好消息传得快，坏消息传的慢）</p>
+<h4 id="链路状态路由选择LS"><a href="#链路状态路由选择LS" class="headerlink" title="链路状态路由选择LS"></a>链路状态路由选择LS</h4><p><img src="/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/4.png" alt="4"><br>使用32位的序列号解决序列号回转问题。<br>使用age倒计时解决路由器崩溃和序列号损坏的问题。 </p>
+<h4 id="单区域OSPF"><a href="#单区域OSPF" class="headerlink" title="单区域OSPF"></a>单区域OSPF</h4><p>特点：<br><img src="/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/6.png" alt="5"><br>分组类型：<br><img src="/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/5.png" alt="5"><br>一般过程：<br>建立路由器毗邻关系<br>选举DR和BDR<br>发现路由<br>选择最佳路由<br>维护路由信息<br>指定路由器DR：<br>网络中的一台特殊路由器，网络中所有路由器都与这台同步减少了同步的次数。由n*(n-1)/2减少到n-1。<br>DR的选择过程：网段中的所有路由器，通过投票确定。</p>
+<h4 id="无类域间路由CIDR"><a href="#无类域间路由CIDR" class="headerlink" title="无类域间路由CIDR"></a>无类域间路由CIDR</h4><p>主要作用：缓解了地址枯竭的趋势（按需分配地址），缩减了路由表的开销。<br>子网的聚合：子网地址空间连续的情况下，可根据不变的网络位加/掩码数表示。</p>
+<h4 id="网络地址翻译NAT"><a href="#网络地址翻译NAT" class="headerlink" title="网络地址翻译NAT"></a>网络地址翻译NAT</h4><p>私有地址到公有地址的转换。<br>某个局域网中使用私人地址，在需要与外网连接时，通过NAT转换器将私有地址转化为公网地址，并且记录相应的转换记录，在数据传回是通过查表转换为私有地址转发。   </p>
+<h4 id="互联网控制消息ICMP"><a href="#互联网控制消息ICMP" class="headerlink" title="互联网控制消息ICMP"></a>互联网控制消息ICMP</h4><p>向源报告差错、测试网络</p>
+<h4 id="地址解析协议ARP"><a href="#地址解析协议ARP" class="headerlink" title="地址解析协议ARP"></a>地址解析协议ARP</h4><p>将目标机的ip地址映射到MAC地址。<br>源机在不知道目的机mac号是发送ARP请求帧，相应的目的机收到请求后作出回应。</p>
+
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2020年05月07日 21:51</p>
+        <p>最后更新： 2020年05月09日 16:40</p>
         <p>原始链接： <a class="post-url" href="/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/" title="网络层">https://coastline-lh.github.io/2020/05/06/%E7%BD%91%E7%BB%9C%E5%B1%82/</a></p>
         <footer>
             <a href="https://Coastline-lh.github.io">
@@ -240,7 +254,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据报网络"><span class="post-toc-text">数据报网络</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#虚电路网络"><span class="post-toc-text">虚电路网络</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Internet-Protocol-IP"><span class="post-toc-text">Internet Protocol(IP)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IP地址"><span class="post-toc-text">IP地址</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#子网"><span class="post-toc-text">子网</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#子网掩码"><span class="post-toc-text">子网掩码</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#子网的构建"><span class="post-toc-text">子网的构建</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IP寻址、分组"><span class="post-toc-text">IP寻址、分组</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IPv6"><span class="post-toc-text">IPv6</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数据报网络"><span class="post-toc-text">数据报网络</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#虚电路网络"><span class="post-toc-text">虚电路网络</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Internet-Protocol-IP"><span class="post-toc-text">Internet Protocol(IP)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IP地址"><span class="post-toc-text">IP地址</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#子网"><span class="post-toc-text">子网</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#子网掩码"><span class="post-toc-text">子网掩码</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#子网的构建"><span class="post-toc-text">子网的构建</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IP寻址、分组"><span class="post-toc-text">IP寻址、分组</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#IPv6"><span class="post-toc-text">IPv6</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#路由"><span class="post-toc-text">路由</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#距离矢量路由DV"><span class="post-toc-text">距离矢量路由DV</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#路由选择信息协议RIP"><span class="post-toc-text">路由选择信息协议RIP</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#链路状态路由选择LS"><span class="post-toc-text">链路状态路由选择LS</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#单区域OSPF"><span class="post-toc-text">单区域OSPF</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#无类域间路由CIDR"><span class="post-toc-text">无类域间路由CIDR</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#网络地址翻译NAT"><span class="post-toc-text">网络地址翻译NAT</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#互联网控制消息ICMP"><span class="post-toc-text">互联网控制消息ICMP</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#地址解析协议ARP"><span class="post-toc-text">地址解析协议ARP</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
