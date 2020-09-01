@@ -8,17 +8,28 @@
   
     <meta name="keywords" content="Acarehusk's Blog" />
   
-  <meta property="og:type" content="article">
+  <meta name="description" content="关系的基本概念：笛卡尔积的任意一个子集集合称为一个在定义域上的关系，在数据库中，对关系的定义进行了限定与扩充。将关系限定在有限集，并且为关系的每个域附加一个属性名的方法取消关系元组有序性。基本关系的性质：列是同质的，每一列中的分量是同一类型的数据。不同的列可出自同一个域,其中的每一列为一个属性，不同的属性必须给不同的属性名。列的顺序可任意交换。任意两个元组不能完全相同。行的顺序可以任意交换。分量必">
+<meta property="og:type" content="article">
 <meta property="og:title" content="关系代数">
 <meta property="og:url" content="https://coastline-lh.github.io/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/index.html">
 <meta property="og:site_name" content="风也曾来过">
+<meta property="og:description" content="关系的基本概念：笛卡尔积的任意一个子集集合称为一个在定义域上的关系，在数据库中，对关系的定义进行了限定与扩充。将关系限定在有限集，并且为关系的每个域附加一个属性名的方法取消关系元组有序性。基本关系的性质：列是同质的，每一列中的分量是同一类型的数据。不同的列可出自同一个域,其中的每一列为一个属性，不同的属性必须给不同的属性名。列的顺序可任意交换。任意两个元组不能完全相同。行的顺序可以任意交换。分量必">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/1.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/2.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/3.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/4.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/5.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/6.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/7.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/8.png">
 <meta property="article:published_time" content="2020-05-05T14:11:08.000Z">
-<meta property="article:modified_time" content="2020-05-05T14:13:31.775Z">
+<meta property="article:modified_time" content="2020-09-01T08:24:34.259Z">
 <meta property="article:author" content="Acarehusk-lh">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="note">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://coastline-lh.github.io/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -134,10 +145,23 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            
+            <p>关系的基本概念：<br>笛卡尔积的任意一个子集集合称为一个在定义域上的关系，在数据库中，对关系的定义进行了限定与扩充。将关系限定在有限集，并且为关系的每个域附加一个属性名的方法取消关系元组有序性。<br>基本关系的性质：<br>列是同质的，每一列中的分量是同一类型的数据。<br>不同的列可出自同一个域,其中的每一列为一个属性，不同的属性必须给不同的属性名。<br>列的顺序可任意交换。<br>任意两个元组不能完全相同。<br>行的顺序可以任意交换。<br>分量必须取原子值，即每一个分量都必须是不可分的数据项。   </p>
+<h3 id="关系代数运算"><a href="#关系代数运算" class="headerlink" title="关系代数运算"></a>关系代数运算</h3><h4 id="并运算"><a href="#并运算" class="headerlink" title="并运算"></a>并运算</h4><p>R和S的并操作定义为 R∪S = { t | t∈R∨t∈S }。<br>即将两个关系中元组整合，重复的只取一组。<br><img src="/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/1.png" alt="1"></p>
+<h4 id="差运算"><a href="#差运算" class="headerlink" title="差运算"></a>差运算</h4><p>R - S<br>是指R中有而S中没有的元组。<br><img src="/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/2.png" alt="2"></p>
+<h4 id="笛卡尔积"><a href="#笛卡尔积" class="headerlink" title="笛卡尔积"></a>笛卡尔积</h4><p>设R是n元关系，S是m元关系，R和S的的笛卡尔积定义为：<br>R×S={(r1,…,rn,s1,…,sm)|(r1,…, rn )∈R∧(s1, …,sm )∈S}。</p>
+<h4 id="投影"><a href="#投影" class="headerlink" title="投影"></a>投影</h4><p>设R是一个n元关系，R的投影操作定义为：<br>∏i1,i2,…,im(R) = {(ri1, …,rim)|(r1 ,…,ri1,…,rim,…,rn)∈R}。<br>关系R上的投影是从R中选择出若干属性列组成新的关系。记作： 其中A为R中的属性列。投影操作是从列的角度进行运算。</p>
+<h4 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h4><p>设R是一个n元关系，F是一个形如riθc的公式，其中θ∈{=，≠，&gt;，&lt;，≤，≥}，R的选择操作定义为F(R)={(r1,…,ri ,…,rn )|(r1,…,ri ,…,rn )∈R∧riθc }。<br>把符合条件的取出组成新的关系。<br><img src="/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/3.png" alt="3"></p>
+<h4 id="交操作"><a href="#交操作" class="headerlink" title="交操作"></a>交操作</h4><p>把两个关系中的相同的元组取出</p>
+<h4 id="连接操作"><a href="#连接操作" class="headerlink" title="连接操作"></a>连接操作</h4><p>设R是n元关系，S是m元关系，A是R的属性，B是S的属性，A和B的值域具有相同的数据类型，θ∈{=, ≠, &gt;, &lt;, ≤, ≥}。R和S的连接操作定义为<br><img src="/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/4.png" alt="4"><br>其中，r[A]表示元组r在属性A上的值，s[B]表示元组s在属性B上的值。我们称A和B是连接属性。<br>即:两个关系先做笛卡尔积运算, 然后再根据条件进行比对. 留下符合条件的。<br><img src="/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/5.png" alt="5"> </p>
+<h5 id="自然连接"><a href="#自然连接" class="headerlink" title="自然连接"></a>自然连接</h5><p>自然连接 设Att(R)和Att(S)分别是R和S的属性集合。连接条件为R.B=S.B，连接的结果关系的属性集合为Att(R)∪(Att(S)-{B})，即B在结果关系中只出现一次。<br>两个具有相同属性的关系，相同属性对应的值相同的拼在一起。</p>
+<h5 id="等值连接"><a href="#等值连接" class="headerlink" title="等值连接"></a>等值连接</h5><p>从两个连接的关系中分别选取A、B两个属性，连个属性的值相等的那些元组选出。</p>
+<h5 id="左外连接"><a href="#左外连接" class="headerlink" title="左外连接"></a>左外连接</h5><p>把左边关系R中要舍弃的元组保留。先自然连接，成为ABCE。以左边的为基准，所以B列的b5没了。<br><img src="/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/6.png" alt="6"> </p>
+<h5 id="右外连接"><a href="#右外连接" class="headerlink" title="右外连接"></a>右外连接</h5><p>把右边关系S中要舍弃的元组保留。先自然连接，以右边的S为基准，保留B列共同的值，R中的b4没有所以删除了。<br><img src="/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/7.png" alt="7"> </p>
+<h5 id="全外链接"><a href="#全外链接" class="headerlink" title="全外链接"></a>全外链接</h5><p>不满足R.B=S.B 的元组保留。<br><img src="/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/8.png" alt="8"> </p>
+
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2020年05月05日 22:13</p>
+        <p>最后更新： 2020年09月01日 16:24</p>
         <p>原始链接： <a class="post-url" href="/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/" title="关系代数">https://coastline-lh.github.io/2020/05/05/%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/</a></p>
         <footer>
             <a href="https://Coastline-lh.github.io">
@@ -224,6 +248,12 @@
 </article>
 
 
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关系代数运算"><span class="post-toc-text">关系代数运算</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#并运算"><span class="post-toc-text">并运算</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#差运算"><span class="post-toc-text">差运算</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#笛卡尔积"><span class="post-toc-text">笛卡尔积</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#投影"><span class="post-toc-text">投影</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#选择"><span class="post-toc-text">选择</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#交操作"><span class="post-toc-text">交操作</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#连接操作"><span class="post-toc-text">连接操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#自然连接"><span class="post-toc-text">自然连接</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#等值连接"><span class="post-toc-text">等值连接</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#左外连接"><span class="post-toc-text">左外连接</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#右外连接"><span class="post-toc-text">右外连接</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#全外链接"><span class="post-toc-text">全外链接</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
 
 <nav id="article-nav">
   
@@ -304,7 +334,7 @@
             <a class="category-link" href="/categories/JAVA/">JAVA</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Review/">Review</a><a class="category-link" href="/categories/Web/">Web</a><a class="category-link" href="/categories/project/">project</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/note/" style="font-size: 15px;">note</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 17.5px;">基础</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%A6%82%E5%BF%B5/" style="font-size: 17.5px;">概念</a> <a href="/tags/%E6%BA%90%E4%BB%A3%E7%A0%81/" style="font-size: 12.5px;">源代码</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 10px;">环境</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">编程语言</a> <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 10px;">编译原理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 17.5px;">语法</a>
+            <a href="/tags/note/" style="font-size: 16.67px;">note</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 16.67px;">基础</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%A6%82%E5%BF%B5/" style="font-size: 16.67px;">概念</a> <a href="/tags/%E6%BA%90%E4%BB%A3%E7%A0%81/" style="font-size: 13.33px;">源代码</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 10px;">环境</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">编程语言</a> <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 10px;">编译原理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.33px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 16.67px;">语法</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -331,7 +361,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/note/" style="font-size: 15px;">note</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 17.5px;">基础</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%A6%82%E5%BF%B5/" style="font-size: 17.5px;">概念</a> <a href="/tags/%E6%BA%90%E4%BB%A3%E7%A0%81/" style="font-size: 12.5px;">源代码</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 10px;">环境</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">编程语言</a> <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 10px;">编译原理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 17.5px;">语法</a>
+            <a href="/tags/note/" style="font-size: 16.67px;">note</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 16.67px;">基础</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%A6%82%E5%BF%B5/" style="font-size: 16.67px;">概念</a> <a href="/tags/%E6%BA%90%E4%BB%A3%E7%A0%81/" style="font-size: 13.33px;">源代码</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 10px;">环境</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 20px;">编程语言</a> <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 10px;">编译原理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.33px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 16.67px;">语法</a>
         </div>
     </div>
 </div>
