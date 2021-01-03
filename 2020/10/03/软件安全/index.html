@@ -22,8 +22,9 @@
 <meta property="og:image" content="https://coastline-lh.github.io/2020/10/03/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/5.png">
 <meta property="og:image" content="https://coastline-lh.github.io/2020/10/03/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/6.png">
 <meta property="og:image" content="https://coastline-lh.github.io/2020/10/03/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/7.png">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/10/03/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/8.png">
 <meta property="article:published_time" content="2020-10-03T08:24:44.000Z">
-<meta property="article:modified_time" content="2021-01-01T08:53:52.748Z">
+<meta property="article:modified_time" content="2021-01-02T01:57:46.476Z">
 <meta property="article:author" content="Acarehusk-lh">
 <meta property="article:tag" content="note">
 <meta property="article:tag" content="软件安全">
@@ -163,7 +164,7 @@
 <p>e_lfanew：为32位可执行文件扩展的域，用来表示DOS头之后的NT头相对文件起始地址的偏移。（小端表示法）</p>
 <p>以notepad.exe为例：</p>
 <p><img src="/2020/10/03/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/3.png" alt></p>
-<p>通过查看DOS头可以快速找到NT头，NT头中存储这重要的数据。</p>
+<p>通过查看DOS头可以快速找到NT头，NT头中存储着重要的数据。</p>
 <p>在DOS头与NT头之间存在着一部分数据如下：</p>
 <p><img src="/2020/10/03/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/4.png" alt></p>
 <p>这段数据称为DOS存根，这段数据有代码和数混合大小不定，也不会影响程序的正常运行。</p>
@@ -212,10 +213,15 @@
 <p><img src="/2020/10/03/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/6.png" alt></p>
 <p>可选头：</p>
 <p><img src="/2020/10/03/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/7.png" alt></p>
+<p>在可选头中可以查看相应DataDirectory的数据。</p>
+<h5 id="导出表"><a href="#导出表" class="headerlink" title="导出表"></a>导出表</h5><p>导出表是用来描述模块中的导出函数的结构，如果一个模块导出了函数，那么这个函数会被记录在导出表中，这样通过GetProcAddress函数就能动态获取到函数的地址。函数导出的方式有两种，一种是按名字导出，一种是按序号导出。这两种导出方式在导出表中的描述方式也不相同。</p>
+<p>结构：</p>
+<p><img src="/2020/10/03/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/8.png" alt></p>
+<p>在上图中，AddressOfNames指向一个数组，数组里保存着一组RVA，每个RVA指向一个字符串，这个字符串即导出的函数名，与这个函数名对应的是AddressOfNameOrdinals中的对应项。获取导出函数地址时，先在AddressOfNames中找到对应的名字，比如Func2，他在AddressOfNames中是第二项，然后从AddressOfNameOrdinals中取出第二项的值，这里是2，表示函数入口保存在AddressOfFunctions这个数组中下标为2的项里，即第三项，取出其中的值，加上模块基地址便是导出函数的地址。如果函数是以序号导出的，那么查找的时候直接用序号减去Base，得到的值就是函数在AddressOfFunctions中的下标。</p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2021年01月01日 16:53</p>
+        <p>最后更新： 2021年01月02日 09:57</p>
         <p>原始链接： <a class="post-url" href="/2020/10/03/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/" title="软件安全-PE文件">https://coastline-lh.github.io/2020/10/03/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/</a></p>
         <footer>
             <a href="https://Coastline-lh.github.io">
@@ -304,7 +310,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PE文件结构"><span class="post-toc-text">PE文件结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#总体介绍"><span class="post-toc-text">总体介绍</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#结构详解"><span class="post-toc-text">结构详解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#DOS头"><span class="post-toc-text">DOS头</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#NT头"><span class="post-toc-text">NT头</span></a></li></ol></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PE文件结构"><span class="post-toc-text">PE文件结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#总体介绍"><span class="post-toc-text">总体介绍</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#结构详解"><span class="post-toc-text">结构详解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#DOS头"><span class="post-toc-text">DOS头</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#NT头"><span class="post-toc-text">NT头</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#导出表"><span class="post-toc-text">导出表</span></a></li></ol></li></ol></li></ol>
         </nav>
     </aside>
     
