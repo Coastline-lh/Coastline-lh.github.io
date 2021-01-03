@@ -15,12 +15,14 @@
 <meta property="og:site_name" content="风也曾来过">
 <meta property="og:description" content="第一章 概述什么是计算机安全？对某个自动化信息系统的保护措施，其目的在于实现信息系统资源的完整性、可用性以及机密性（包括硬件、软件、固件、信息&#x2F;数据、电信）     机密性：数据机密性： 保证私有、机密的数据不外泄。隐私性：保证个人可以控制和影响与自己相关的信息。      完整性:数据完整性： 保证只能通过已授权的方式更改信息和代码。系统完整性： 保证系统能够正常的实现其预期功能，不会被其他非授">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://coastline-lh.github.io/2020/10/01/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/1-1609676927067.png">
 <meta property="article:published_time" content="2020-10-01T01:22:20.000Z">
-<meta property="article:modified_time" content="2021-01-03T05:56:30.277Z">
+<meta property="article:modified_time" content="2021-01-03T12:29:24.086Z">
 <meta property="article:author" content="Acarehusk-lh">
 <meta property="article:tag" content="note">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://coastline-lh.github.io/2020/10/01/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/1-1609676927067.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -220,10 +222,132 @@
 <li>A和B各自有一个到达第三方的加密链路，C能够咋加密链路上传递密钥给A和B</li>
 </ol>
 <p>密钥类型：会话密钥（一次性会话使用）和永久密钥（用于分发会话密钥）</p>
-
+<p>简单的基于密钥分发中心的会话密钥分发机制：</p>
+<p>通过第三方密钥分发中心完成的这样一个过程容易遭受到重放攻击，针对重放攻击的解决方案：时间戳、临时值、时间戳+临时值。</p>
+<h4 id="Kerberos"><a href="#Kerberos" class="headerlink" title="Kerberos"></a>Kerberos</h4><p>在一个分布式的环境中，工作站的用户希望访问分布在网络各处的服务器上的服务。希望服务器能够将访问权限限制在授权用户范围内，并且能够认证服务请求。</p>
+<p>基本思想：集中认证服务器的实现</p>
+<p>用户对服务器的认证；服务器对用户的认证；认证服务器提供一种票据（表示已鉴别的令牌，是不能伪造、不能重放、已鉴别的对象）。使用对称密钥加密体制。</p>
+<p>工作过程：</p>
+<p>(1) 用户身份鉴别</p>
+<p>​    用户与Kerberos服务器建立会话，用户传送自己的身份+TGS服务器号+时间</p>
+<p>​    Kerberos服务器验证该用户是否为合法用户，发送会话密钥Kc，tgs，用户网络             地址ADc和票据Ticket<sub>tgs</sub>给用户。</p>
+<p>​    若工作站可以用用户输入的口令Kc解密回应消息，就成功通过鉴别。</p>
+<p>（口令集中存在Kerberos服务器上，不需要再网络中传输）</p>
+<p>(2) 用户向票据授权服务器请求获得该服务的票据</p>
+<p>用户发送请求 -&gt; 票据授权服务器对u验证其访问许可，返回一服务票据。用票据服务器和文件服务器之间的会话密钥加密。</p>
+<p>引入票据授权的意义：避免用户每次访问新的服务器都要求输入口令。用户只需要保存第一次认证获得的票据，每次有新的请求，重用该票据直接送给票据授权服务器。</p>
+<p>存在问题：<strong>如何防止重放攻击 ，在as授予的票据有效期内利用该票据</strong>  </p>
+<p>解决：需要TGS（票据授权）服务器和用户之间的认证，因此有一个会话密钥Kc，认证符就采用会话密钥对ID，网络地址和时间加密，避免重放。</p>
+<p>(3) 用户从文件服务器获得服务</p>
+<p>传送票据和认证符，服务器验证票据。</p>
+<p>Kerberos可低于分布式环境下的多种攻击</p>
+<ol>
+<li><p>网络中无口令通信</p>
+<p>口令存在Kerberos服务器中</p>
+</li>
+<li><p>有限有效期</p>
+<p>每个票据，防止暴力密码分析</p>
+</li>
+<li><p>时间戳阻止重放攻击</p>
+<p>每个请求以请求时刻为标记</p>
+</li>
+<li><p>相互鉴别</p>
+<p>服务器只有在拥有与票据授权服务器共享的密钥时才能对票据解密，获取会话密钥，用来解密用户请求。同时服务器返回一个用相同的会话密钥加密且包含1+用户时间戳给用户，可以判定服务器是可信的。</p>
+</li>
+</ol>
+<p>Kerberos5的改进之处：</p>
+<p>环境不足：</p>
+<p>加密系统依赖性，DES算法   –&gt;   密码表上加密类型可以使用任何加密算法。</p>
+<p>需要使用IP地址    –&gt;  网络地址被标注类型和长度，支持其他类型网络地址。</p>
+<p>消息发送者使用自己选择的字节排序 –&gt;   所有消息结构使用抽象语法表示ASN.1和基本编码规则BER。</p>
+<p>票据有效期只有8位编码，最多21小时 –&gt;  票据有明确的开始时间和结束时间。</p>
+<p>不支持认证转发（不允许将发放给客户端的证书转发给其他主机） –&gt;  支持一个客户端访问一台服务器，并让服务器已客户端的名义访问另一服务器。</p>
+<p>版本4中N个域互操作有N<sup>2</sup>阶关系 –&gt;版本5支持一种较少的关系。</p>
+<p>技术缺陷：</p>
+<p>双重加密，计算上造成了浪费。(书 P90)</p>
+<h3 id="基于非对称加密的密钥分配"><a href="#基于非对称加密的密钥分配" class="headerlink" title="基于非对称加密的密钥分配"></a>基于非对称加密的密钥分配</h3><ol>
+<li>公钥证书   （P 92）</li>
+<li>基于公钥密码的秘密密钥密钥分发</li>
+</ol>
+<h4 id="X-509证书"><a href="#X-509证书" class="headerlink" title="X.509证书"></a>X.509证书</h4><p>证书结构</p>
+<p>版本     序号      签名算法标识      发文者     证书的有效期     持证书人名    主体公钥信息     发放者唯一标识符      主体唯一标识符     拓展    数字签名</p>
+<p>实际上，公钥证书有公钥加上公钥所有者的用户ID以及可信第三方签名的整个数据块组成。</p>
+<p>公钥基础设施PKI</p>
+<p>基于非对称密钥体制的用来生成、管理、存储、分配和撤销数字证书的一套硬件、软件、人员、策略和过程。</p>
+<p>主要目的：对公钥的认证，安全、方便高效获取公钥。</p>
+<p>PKI遵循X.509的标准</p>
+<p>功能：</p>
+<ol>
+<li>为用户生成一对密钥，通过一定途径分发给用户</li>
+<li>为用户签发数字证书，发给用户</li>
+<li>对用户证书有效性验证</li>
+<li>对用户证书管理，包括证书的公布、撤销证书归档</li>
+</ol>
+<p>PKI基础上的应用：抗抵赖、身份认证、对称密钥交换、数据加密存储</p>
+<p>组成：</p>
+<ol>
+<li>注册机构RA</li>
+<li>认证中心CA</li>
+<li>证书目录（存储）</li>
+<li>密钥恢复服务器</li>
+<li>管理协议</li>
+<li>操作协议</li>
+</ol>
+<h4 id="联合身份管理"><a href="#联合身份管理" class="headerlink" title="联合身份管理"></a>联合身份管理</h4><p>身份管理：为每个用户定义一个身份，将身份与属性连接，并制定一种方法使得用户能够证明其身份。基本思想-单点登录</p>
+<p>联合身份认证：将身份管理拓展到多个安全域。目的在于共享数字身份，使得用户只需要认证一次就可以接入多个域的应用和资源。</p>
+<p>案例：</p>
+<p>基于账户信息的联合：公司A和公司B签订合同，在工作的域名中完成认证后点击合作域名，将以该身份进入另一域名.</p>
+<h4 id="挑战应答认证"><a href="#挑战应答认证" class="headerlink" title="挑战应答认证"></a>挑战应答认证</h4><p>基于<code>挑战/应答（Challenge/Response）方式的身份认证系统</code>就是每次认证时认证服务器端都给客户端发送一个不同的”挑战”字串，客户端程序收到这个”挑战”字串后，做出相应的”应答”,以此机制而研制的系统.认证过程为：</p>
+<ol>
+<li>客户向认证服务器发出请求，要求进行身份认证；</li>
+<li>认证服务器从用户数据库中查询用户是否是合法的用户，若不是，则不做进一步处理；</li>
+<li>认证服务器内部产生一个随机数，作为”提问”，发送给客户；</li>
+<li>客户将用户名字和随机数合并，使用单向Hash函数（例如MD5算法）生成一个字节串作为应答；</li>
+<li>认证服务器将应答串与自己的计算结果比较，若二者相同，则通过一次认证；否则，认证失败；</li>
+<li>认证服务器通知<a href="https://baike.baidu.com/item/客户认证" target="_blank" rel="noopener">客户认证</a>成功或失败。</li>
+</ol>
+<p>以后的认证由客户不定时地发起，过程中没有了客户认证请求一步。两次认证的时间间的密钥隔不能太短，否则就给网络、客户和认证服务器带来太大的开销；也不能太长，否则不能保证用户不被他人盗用IP地址，一般定为1-2分钟。</p>
+<p>问题</p>
+<ol>
+<li><p>盐值如何提高安全性</p>
+<p>通过生成的一个随机的盐值,在计算散列值时将盐值作为前缀,这样的情况下及时是相同的密码也会得到不同的散列值。</p>
+<p>除此之外，还可以通过增加检查失败登录次数来增强安全性。那样的话，攻击者在多次破解一个密码时，会被系统锁定，而且这个措施同样可以防止拒绝服务攻击或那些发送巨量请求试图让站点因过载而死机的攻击。</p>
+</li>
+<li><p>　OTP（一次性口令）的算法通常有三种：</p>
+<p>基于时间的时间同步(Time-synchronized)算法</p>
+<p>基于特定的事件（比如之前生成的密码）的事件同步(Event-synchronized)算法</p>
+<p>通过一方发起挑战，另一方根据挑战生成能证明用户身份的挑战/应答(challenge/response)算法。</p>
+</li>
+</ol>
+<h2 id="第四章-网络协议缺陷"><a href="#第四章-网络协议缺陷" class="headerlink" title="第四章 网络协议缺陷"></a>第四章 网络协议缺陷</h2><p>主要内容在网络安全实验中涉及。</p>
+<h2 id="第五章-IPsec"><a href="#第五章-IPsec" class="headerlink" title="第五章 IPsec"></a>第五章 IPsec</h2><h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>提供对跨域LAN/WAN, Internet的通讯提供安全性</p>
+<ul>
+<li>分支办公机构通过Internet互联</li>
+<li>通过Internet的远程访问</li>
+<li>增强电子商务安全性</li>
+<li>与合作伙伴建立extranet与Internet的互连</li>
+</ul>
+<p>可以支持IP级所有流量的加密和认证</p>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>当在路由器和防火墙中使用IPsec，对通过其边界的所有通信流提供强安全性，内部通信无安全开销。</p>
+<p>位于传输层之下，对所有应用透明。</p>
+<p>可以对终端用户透明，不需要对用户进行安全机制培训。</p>
+<h3 id="在路由安全中的应用"><a href="#在路由安全中的应用" class="headerlink" title="在路由安全中的应用"></a>在路由安全中的应用</h3><p>可确保路由器信息的认证</p>
+<ul>
+<li>路由器广播来自授权的路由器</li>
+<li>邻居广播来自授权的路由器</li>
+<li>重定向报文来自于接收初始包的路由器</li>
+<li>路由更新未被伪造</li>
+</ul>
+<p>在IP层中提供了： 访问控制、无连接的完整性、数据来源验证、防回放攻击、加密和数据流分类加密等服务。</p>
+<h3 id="IPsec的两种模式"><a href="#IPsec的两种模式" class="headerlink" title="IPsec的两种模式"></a>IPsec的两种模式</h3><p>传输模式 </p>
+<p>主要为上层协议提供保护，加密和可选择的认证用于在两个主机之间进行端到端的通信。当协议在一台主机上实现时使用。IPsec头部被插在IP头后面。</p>
+<p>隧道模式</p>
+<p>整个IP包封装加密，形成新的IP头部。沿途路由器不检查内部的IP报头。适用于隧道结束在某个非目的地，该目的地结束IPsec隧道，还原成原来的数据包在本地网传输。隧道模式的另一个好处是可以将聚集TCP连接当成一个流加密，可以抵抗traffic analysis</p>
+<p><img src="/2020/10/01/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/1-1609676927067.png" alt></p>
+<h3 id="IPsec基本数据结构"><a href="#IPsec基本数据结构" class="headerlink" title="IPsec基本数据结构"></a>IPsec基本数据结构</h3>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2021年01月03日 13:56</p>
+        <p>最后更新： 2021年01月03日 20:29</p>
         <p>原始链接： <a class="post-url" href="/2020/10/01/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" title="网络安全">https://coastline-lh.github.io/2020/10/01/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</a></p>
         <footer>
             <a href="https://Coastline-lh.github.io">
@@ -312,7 +436,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一章-概述"><span class="post-toc-text">第一章 概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是计算机安全？"><span class="post-toc-text">什么是计算机安全？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#OSI安全体系结构"><span class="post-toc-text">OSI安全体系结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#入侵"><span class="post-toc-text">入侵</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安全攻击"><span class="post-toc-text">安全攻击</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#被动攻击"><span class="post-toc-text">被动攻击</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#主动攻击"><span class="post-toc-text">主动攻击</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二章-密码学及应用"><span class="post-toc-text">第二章 密码学及应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#经典密码"><span class="post-toc-text">经典密码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对称或非对称加密体制"><span class="post-toc-text">对称或非对称加密体制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DES"><span class="post-toc-text">DES</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#AES"><span class="post-toc-text">AES</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#RSA"><span class="post-toc-text">RSA</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三章-密钥分配和用户认证"><span class="post-toc-text">第三章 密钥分配和用户认证</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于对称加密的密钥分配"><span class="post-toc-text">基于对称加密的密钥分配</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一章-概述"><span class="post-toc-text">第一章 概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是计算机安全？"><span class="post-toc-text">什么是计算机安全？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#OSI安全体系结构"><span class="post-toc-text">OSI安全体系结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#入侵"><span class="post-toc-text">入侵</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安全攻击"><span class="post-toc-text">安全攻击</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#被动攻击"><span class="post-toc-text">被动攻击</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#主动攻击"><span class="post-toc-text">主动攻击</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二章-密码学及应用"><span class="post-toc-text">第二章 密码学及应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#经典密码"><span class="post-toc-text">经典密码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对称或非对称加密体制"><span class="post-toc-text">对称或非对称加密体制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DES"><span class="post-toc-text">DES</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#AES"><span class="post-toc-text">AES</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#RSA"><span class="post-toc-text">RSA</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三章-密钥分配和用户认证"><span class="post-toc-text">第三章 密钥分配和用户认证</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于对称加密的密钥分配"><span class="post-toc-text">基于对称加密的密钥分配</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Kerberos"><span class="post-toc-text">Kerberos</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于非对称加密的密钥分配"><span class="post-toc-text">基于非对称加密的密钥分配</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#X-509证书"><span class="post-toc-text">X.509证书</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#联合身份管理"><span class="post-toc-text">联合身份管理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#挑战应答认证"><span class="post-toc-text">挑战应答认证</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第四章-网络协议缺陷"><span class="post-toc-text">第四章 网络协议缺陷</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第五章-IPsec"><span class="post-toc-text">第五章 IPsec</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#应用"><span class="post-toc-text">应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优势"><span class="post-toc-text">优势</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在路由安全中的应用"><span class="post-toc-text">在路由安全中的应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IPsec的两种模式"><span class="post-toc-text">IPsec的两种模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IPsec基本数据结构"><span class="post-toc-text">IPsec基本数据结构</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
