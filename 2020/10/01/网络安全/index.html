@@ -17,7 +17,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://coastline-lh.github.io/2020/10/01/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/1-1609676927067.png">
 <meta property="article:published_time" content="2020-10-01T01:22:20.000Z">
-<meta property="article:modified_time" content="2021-01-03T12:29:24.086Z">
+<meta property="article:modified_time" content="2021-01-04T05:40:21.625Z">
 <meta property="article:author" content="Acarehusk-lh">
 <meta property="article:tag" content="note">
 <meta property="article:tag" content="Web">
@@ -320,7 +320,8 @@
 </li>
 </ol>
 <h2 id="第四章-网络协议缺陷"><a href="#第四章-网络协议缺陷" class="headerlink" title="第四章 网络协议缺陷"></a>第四章 网络协议缺陷</h2><p>主要内容在网络安全实验中涉及。</p>
-<h2 id="第五章-IPsec"><a href="#第五章-IPsec" class="headerlink" title="第五章 IPsec"></a>第五章 IPsec</h2><h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>提供对跨域LAN/WAN, Internet的通讯提供安全性</p>
+<h2 id="第五章-IPsec"><a href="#第五章-IPsec" class="headerlink" title="第五章 IPsec"></a>第五章 IPsec</h2><h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>（P 212）</p>
+<p>提供对跨域LAN/WAN, Internet的通讯提供安全性</p>
 <ul>
 <li>分支办公机构通过Internet互联</li>
 <li>通过Internet的远程访问</li>
@@ -342,12 +343,121 @@
 <h3 id="IPsec的两种模式"><a href="#IPsec的两种模式" class="headerlink" title="IPsec的两种模式"></a>IPsec的两种模式</h3><p>传输模式 </p>
 <p>主要为上层协议提供保护，加密和可选择的认证用于在两个主机之间进行端到端的通信。当协议在一台主机上实现时使用。IPsec头部被插在IP头后面。</p>
 <p>隧道模式</p>
-<p>整个IP包封装加密，形成新的IP头部。沿途路由器不检查内部的IP报头。适用于隧道结束在某个非目的地，该目的地结束IPsec隧道，还原成原来的数据包在本地网传输。隧道模式的另一个好处是可以将聚集TCP连接当成一个流加密，可以抵抗traffic analysis</p>
+<p>整个IP包封装加密，形成新的IP头部。沿途路由器不检查内部的IP报头。适用于隧道结束在某个非目的地，该目的地结束IPsec隧道，还原成原来的数据包在本地网传输。隧道模式的另一个好处是可以将聚集TCP连接当成一个流加密，可以抵抗traffic analysis。</p>
 <p><img src="/2020/10/01/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/1-1609676927067.png" alt></p>
-<h3 id="IPsec基本数据结构"><a href="#IPsec基本数据结构" class="headerlink" title="IPsec基本数据结构"></a>IPsec基本数据结构</h3>
+<h3 id="IPsec基本数据结构"><a href="#IPsec基本数据结构" class="headerlink" title="IPsec基本数据结构"></a>IPsec基本数据结构</h3><p>AH  —  鉴别头</p>
+<p>作用：完整性、抗重放攻击、验证发送者身份、将每一个数据包中的数据和一个变化的数字签名结合起来</p>
+<h3 id="IP安全策略"><a href="#IP安全策略" class="headerlink" title="IP安全策略"></a>IP安全策略</h3><p>安全关联（SA） </p>
+<p>安全关联是发送端与接收端之间用于对它们之间传递的数据流提供安全服务的一个简单的单向逻辑连接。如果一个同伴关系需要进行双向的安全交换，则需要两个安全关联。SA提供的安全服务取决于所用的安全协议（AH和ESP,不能同时使用)</p>
+<p>唯一参数：安全参数索引、IP目的地址、安全协议标识。</p>
+<p>安全策略本质上由两个交互的数据库：安全关联数据库（SAD）和安全策略数据库（SPD）。<strong>（P216）</strong></p>
+<h3 id="封装安全载荷ESP"><a href="#封装安全载荷ESP" class="headerlink" title="封装安全载荷ESP"></a>封装安全载荷ESP</h3><p>ESP可提供机密性、数据源认证、中断连接后的完整性、一次抗重放攻击服务和受限的流量机密性。所提供的服务集合依赖于建立安全关联时的选择和在一个网络拓扑中的位置。</p>
+<p>ESP的格式：安全参数索引、序列号、载荷数据、填充域、填充长度、邻接报头、完整性校验值</p>
+<h3 id="SA建立和密钥管理"><a href="#SA建立和密钥管理" class="headerlink" title="SA建立和密钥管理"></a>SA建立和密钥管理</h3><p>IPsec的密钥管理：密钥的确定和分发</p>
+<p>典型的两个应用之间的通信需要4个密钥：用于完整性和机密性的发送对和接收对。IPsec支持两种方式的SA建立和密钥管理：</p>
+<p>手工方式</p>
+<ul>
+<li>所有信息手工配置</li>
+<li>SA永远存在</li>
+<li>适用于结构简单的网络</li>
+</ul>
+<p>自动方式（IKE）协商</p>
+<ul>
+<li>SA可通过协商方式产生</li>
+<li>SA过期后重新协商，提高了安全性</li>
+<li>适用于较复杂拓扑结构和较高安全性的网络</li>
+</ul>
+<h3 id="IKE协议（密钥交换）"><a href="#IKE协议（密钥交换）" class="headerlink" title="IKE协议（密钥交换）"></a>IKE协议（密钥交换）</h3><p>可以用于双向保证、建立共享密钥和生成IPsec，SA的协议，保持了DH的优点，弥补了缺点。</p>
+<p>特性：</p>
+<ul>
+<li>用cookie机制防止拥塞攻击</li>
+<li>使用时间戳防止重放攻击</li>
+<li>认证DH交换，防止中间人攻击</li>
+</ul>
+<p>DH:</p>
+<p>基于原根的定义及性质，可以定义Diffie-Hellman密钥交换算法.该算法描述如下：</p>
+<p>1，有两个全局公开的参数，一个素数q和一个整数a,a是q的一个原根.</p>
+<p>2，假设用户A和B希望交换一个密钥，用户A选择一个作为私有密钥的随机数XA(XA&lt;q)，并计算公开密钥YA=a^XA mod q。A对XA的值保密存放而使YA能被B公开获得。类似地，用户B选择一个私有的随机数XB&lt;q，并计算公开密钥YB=a^XB mod q。B对XB的值保密存放而使YB能被A公开获得.</p>
+<p>3，用户A产生共享秘密密钥的计算方式是K = (YB)^XA mod q.同样，用户B产生共享秘密密钥的计算是K = (YA)^XB mod q.这两个计算产生相同的结果： K = (YB)^XA mod q = (a^XB mod q)^XA mod q = (a^XB)^XA mod q （根据取模运算规则得到） = a^(XBXA) mod q = (a^XA)^XB mod q = (a^XA mod q)^XB mod q = (YA)^XB mod q 因此相当于双方已经交换了一个相同的秘密密钥.</p>
+<p>4，因为XA和XB是保密的，一个敌对方可以利用的参数只有q,a,YA和YB.因而敌对方被迫取离散对数来确定密钥.例如，要获取用户B的秘密密钥，敌对方必须先计算 XB = inda,q(YB) 然后再使用用户B采用的同样方法计算其秘密密钥K. Diffie-Hellman密钥交换算法的安全性依赖于这样一个事实：虽然计算以一个素数为模的指数相对容易，但计算离散对数却很困难.对于大的素数，计算出离散对数几乎是不可能的. 下面给出例子.密钥交换基于素数q = 97和97的一个原根a = 5.A和B分别选择私有密钥XA = 36和XB = 58.每人计算其公开密钥 YA = 5^36 = 50 mod 97 YB = 5^58 = 44 mod 97 在他们相互获取了公开<a href="https://baike.baidu.com/item/密钥" target="_blank" rel="noopener">密钥</a>之后，各自通过计算得到双方共享的秘密密钥如下： K = (YB)^XA mod 97 = 44^36 = 75 mod 97 K = (YA)^XB mod 97 = 50^58 = 75 mod 97 从|50,44|出发，攻击者要计算出75很不容易.</p>
+<h3 id="密钥确定协议"><a href="#密钥确定协议" class="headerlink" title="密钥确定协议"></a>密钥确定协议</h3><p>产生Cookie的方法：</p>
+<p>根据源IP地址、目的地址、UDO源端口、目的端口和本地产生的秘密值进行快速散列运算。要求各方在初始消息中发送一个随机数cookie，此消息要得到对方的确认，此确认必须在DH密钥交换的第一条信息中重复。</p>
+<p>IKE密钥确定：</p>
+<p>采用不同的群进行DH交换</p>
+<p>IKE密钥用三种不同的认证方法</p>
+<ul>
+<li>数字签名—双方都用私钥加密散列值</li>
+<li>公钥加密—用发送者的私钥对参数进行加密</li>
+<li>对称密钥加密—通过外带机制得到密钥，并用该密钥对交换参数进行对称加密</li>
+</ul>
+<p>问题</p>
+<p>IPsec两种工作模式，在安全性上有什么不同？</p>
+<p>传输模式只bai对IP数据包的有效负载进du行加密或认证，此zhi时继续使dao用原始IP头部。隧道模式对整个IP数据包进行加密或认证。此时，需要新产生一个IP头部，原来IP头被加密，有效地防止“中间人”攻击。传输模式是为了保护端到端的安全性，即在这种模式下不会隐藏路由信息。</p>
+<h2 id="第六章-传输层安全"><a href="#第六章-传输层安全" class="headerlink" title="第六章 传输层安全"></a>第六章 传输层安全</h2><h3 id="TCP-IP安全方法"><a href="#TCP-IP安全方法" class="headerlink" title="TCP/IP安全方法"></a>TCP/IP安全方法</h3><p>IPsec的好处是对终端用户和应用是透明的，能提供一种一般性的解决方案；</p>
+<p>SSL或TLS都是可执行协议软件包的一部分，从而对应用是透明的，Netscape进而IE都配置了SSL.大部分web服务都实现了该协议。</p>
+<h3 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h3><p>SSL（安全套接层）由Netscape开发，专门用于保护web通信，保护浏览器和服务器之间的通信，在客户和服务器之间提供服务鉴别、可选客户鉴别和加密通信信道。使用tcp提供一种可靠的端对端的安全服务。</p>
+<p>功能：</p>
+<ul>
+<li>客户端验证服务器</li>
+<li>客户端与服务器选择彼此支持的算法</li>
+<li>服务器验证客户端</li>
+<li>使用公开密钥算法产生共享的密钥</li>
+<li>SSL连接建立</li>
+</ul>
+<p>协议位置：</p>
+<p>处于7层模型的第4层，可用于保护正常运行与TCP之上的任何应用协议，最常见的是用来保护HTTP的通信。</p>
+<h4 id="记录协议"><a href="#记录协议" class="headerlink" title="记录协议"></a>记录协议</h4><p>为SSL连接提供服务：机密性和消息完整性</p>
+<h4 id="修改密文协议"><a href="#修改密文协议" class="headerlink" title="修改密文协议"></a>修改密文协议</h4><p>本协议只包含一条消息，由一个值为1的字节组成，唯一的功能就是使得挂起状态改变为当前状态，用于更新此连接使用的密码套件。</p>
+<h4 id="警报协议"><a href="#警报协议" class="headerlink" title="警报协议"></a>警报协议</h4><p>将与SSL相关的警报传递给对等实体，如果在通信过程中某一方发现异常就需要给对方发送一条警示消息。</p>
+<h4 id="握手协议"><a href="#握手协议" class="headerlink" title="握手协议"></a>握手协议</h4><p>服务器和客户互相鉴别对方，协商具体的加密算法和Mac算法以及保密密钥，用来保护在SSL记录中发送的数据。</p>
+<h4 id="安全性分析"><a href="#安全性分析" class="headerlink" title="安全性分析"></a>安全性分析</h4><p>抗重放攻击：SSL使用序列号来保护通信方免受报文重放攻击。这个序列号被加密后作为数据包的负载，在整个SSL握手中，都有一个唯一的随机数来标记这个SSL握手，这样可以抗重放。</p>
+<p>鉴别机制</p>
+<p>公开密钥技术和数字签名技术可以实现客户端和服务器端的身份鉴别</p>
+<p>加密体制</p>
+<p>混合密码体制使用了会话和数据传输的加密性保护，双方使用非对称密码体制协商出本次将要使用的会话密钥，并选择一种对称加密算法</p>
+<p>完整性机制</p>
+<p>定义了可共享、可以用来形成鉴别码MAC的密钥</p>
+<h4 id="脆弱性分析"><a href="#脆弱性分析" class="headerlink" title="脆弱性分析"></a>脆弱性分析</h4><ol>
+<li><p>客户端假冒</p>
+<p>SSL协议是对web站点及网上交易进行安全性保护，为了不至于由于安全协议的使用导致网络性能大幅度下降，SSL协议并不是默认要求进行客户鉴别。针对该问题可在必要的时候配置SSL协议使其对客户端进行认证。</p>
+</li>
+<li><p>无法提供基于UDP应用的安全保护</p>
+<p>SSL协议需要在握手之前建立TCP连接，因此不能对UDP应用进行保护，若要兼顾UDP可以采用IP层安全解决方案。</p>
+</li>
+<li><p>SSL协议不能对抗通信流量分析</p>
+<p>SSL只对应用数据进行保护，数据包的ip头和tcp头仍然暴露在外，通过检查没有加密的ip源和目的地址等信息，仍然可以揭示哪一方在使用什么服务。</p>
+</li>
+<li><p>进程中主密钥泄露</p>
+<p>除非SSL的工程实现大部分驻留在硬件中，否则主密钥将会存留在属鸡的主存储中，可以被读取到。</p>
+</li>
+<li><p>磁盘的临时文件可能遭受到攻击</p>
+</li>
+<li><p>安全盲点</p>
+</li>
+</ol>
+<h3 id="传输层安全TLS"><a href="#传输层安全TLS" class="headerlink" title="传输层安全TLS"></a>传输层安全TLS</h3><p>HTTP和SSL结合实现网络浏览器和服务器之间的安全通信。</p>
+<p>HTTP和HTTPS的区别</p>
+<ul>
+<li>https需要申请CA证书</li>
+<li>http是明文传输，https具有安全性的SSL加密传输协议</li>
+<li>连接方式完全不同，http使用80端口，https使用443端口</li>
+<li>http连接简单，无状态的；https协议是由ssl+http构建的可以进行加密传输、身份认证的网络协议，更加安全。</li>
+</ul>
+<p>https解决的问题</p>
+<ul>
+<li>信任主机问题（CA证书）</li>
+<li>通讯过程中数据的泄露和篡改（加密传输）</li>
+<li>某些情况，客户端也需要证书</li>
+</ul>
+<h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>SSH是一个相对简单和经济的网络信息安全通信协议，适用于大多数操作系统，</p>
+<p>由三个通信协议组织而成:<br>传输层协议—–提供身份认证、数据保密性、完整性</p>
+<p>用户身份认证协议—-验证服务器的用户</p>
+<p>连接协议—-在一个单一、基础的SSH连接中复用多个逻辑的通信信道</p>
+<p>（P151）</p>
+
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2021年01月03日 20:29</p>
+        <p>最后更新： 2021年01月04日 13:40</p>
         <p>原始链接： <a class="post-url" href="/2020/10/01/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" title="网络安全">https://coastline-lh.github.io/2020/10/01/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</a></p>
         <footer>
             <a href="https://Coastline-lh.github.io">
@@ -436,7 +546,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一章-概述"><span class="post-toc-text">第一章 概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是计算机安全？"><span class="post-toc-text">什么是计算机安全？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#OSI安全体系结构"><span class="post-toc-text">OSI安全体系结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#入侵"><span class="post-toc-text">入侵</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安全攻击"><span class="post-toc-text">安全攻击</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#被动攻击"><span class="post-toc-text">被动攻击</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#主动攻击"><span class="post-toc-text">主动攻击</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二章-密码学及应用"><span class="post-toc-text">第二章 密码学及应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#经典密码"><span class="post-toc-text">经典密码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对称或非对称加密体制"><span class="post-toc-text">对称或非对称加密体制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DES"><span class="post-toc-text">DES</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#AES"><span class="post-toc-text">AES</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#RSA"><span class="post-toc-text">RSA</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三章-密钥分配和用户认证"><span class="post-toc-text">第三章 密钥分配和用户认证</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于对称加密的密钥分配"><span class="post-toc-text">基于对称加密的密钥分配</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Kerberos"><span class="post-toc-text">Kerberos</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于非对称加密的密钥分配"><span class="post-toc-text">基于非对称加密的密钥分配</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#X-509证书"><span class="post-toc-text">X.509证书</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#联合身份管理"><span class="post-toc-text">联合身份管理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#挑战应答认证"><span class="post-toc-text">挑战应答认证</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第四章-网络协议缺陷"><span class="post-toc-text">第四章 网络协议缺陷</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第五章-IPsec"><span class="post-toc-text">第五章 IPsec</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#应用"><span class="post-toc-text">应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优势"><span class="post-toc-text">优势</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在路由安全中的应用"><span class="post-toc-text">在路由安全中的应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IPsec的两种模式"><span class="post-toc-text">IPsec的两种模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IPsec基本数据结构"><span class="post-toc-text">IPsec基本数据结构</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一章-概述"><span class="post-toc-text">第一章 概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是计算机安全？"><span class="post-toc-text">什么是计算机安全？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#OSI安全体系结构"><span class="post-toc-text">OSI安全体系结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#入侵"><span class="post-toc-text">入侵</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安全攻击"><span class="post-toc-text">安全攻击</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#被动攻击"><span class="post-toc-text">被动攻击</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#主动攻击"><span class="post-toc-text">主动攻击</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二章-密码学及应用"><span class="post-toc-text">第二章 密码学及应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#经典密码"><span class="post-toc-text">经典密码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对称或非对称加密体制"><span class="post-toc-text">对称或非对称加密体制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DES"><span class="post-toc-text">DES</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#AES"><span class="post-toc-text">AES</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#RSA"><span class="post-toc-text">RSA</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三章-密钥分配和用户认证"><span class="post-toc-text">第三章 密钥分配和用户认证</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于对称加密的密钥分配"><span class="post-toc-text">基于对称加密的密钥分配</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Kerberos"><span class="post-toc-text">Kerberos</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于非对称加密的密钥分配"><span class="post-toc-text">基于非对称加密的密钥分配</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#X-509证书"><span class="post-toc-text">X.509证书</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#联合身份管理"><span class="post-toc-text">联合身份管理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#挑战应答认证"><span class="post-toc-text">挑战应答认证</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第四章-网络协议缺陷"><span class="post-toc-text">第四章 网络协议缺陷</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第五章-IPsec"><span class="post-toc-text">第五章 IPsec</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#应用"><span class="post-toc-text">应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优势"><span class="post-toc-text">优势</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在路由安全中的应用"><span class="post-toc-text">在路由安全中的应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IPsec的两种模式"><span class="post-toc-text">IPsec的两种模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IPsec基本数据结构"><span class="post-toc-text">IPsec基本数据结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IP安全策略"><span class="post-toc-text">IP安全策略</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#封装安全载荷ESP"><span class="post-toc-text">封装安全载荷ESP</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SA建立和密钥管理"><span class="post-toc-text">SA建立和密钥管理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IKE协议（密钥交换）"><span class="post-toc-text">IKE协议（密钥交换）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#密钥确定协议"><span class="post-toc-text">密钥确定协议</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第六章-传输层安全"><span class="post-toc-text">第六章 传输层安全</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TCP-IP安全方法"><span class="post-toc-text">TCP&#x2F;IP安全方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SSL"><span class="post-toc-text">SSL</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#记录协议"><span class="post-toc-text">记录协议</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#修改密文协议"><span class="post-toc-text">修改密文协议</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#警报协议"><span class="post-toc-text">警报协议</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#握手协议"><span class="post-toc-text">握手协议</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安全性分析"><span class="post-toc-text">安全性分析</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#脆弱性分析"><span class="post-toc-text">脆弱性分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#传输层安全TLS"><span class="post-toc-text">传输层安全TLS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SSH"><span class="post-toc-text">SSH</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
